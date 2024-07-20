@@ -1,5 +1,5 @@
 import type { Metadata } from 'next';
-import { MainNav } from '@/components';
+import { NavMenu } from '@/components';
 import { fira } from '@/components/ui/fonts';
 import { cn } from '@/lib/utils';
 import '@/styles/globals.css';
@@ -19,14 +19,14 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en">
+    <html lang="es" suppressHydrationWarning>
       <body
         className={cn(
           fira.className,
           'bg-white text-black dark:bg-black dark:text-white dark:bg-opacity-90 dark:text-opacity-90'
         )}
       >
-        <MainNav />
+        <NavMenu />
         {children}
         <Toaster />
       </body>
