@@ -12,7 +12,7 @@ import { navbarMainLinks } from '@/config/links';
 
 export const MainNav = () => {
   return (
-    <div className="w-full sticky top-0 inset-x-0 bg-white z-50 shadow-sm h-16 flex items-center justify-around">
+    <div className="w-full sticky top-0 inset-x-0 z-50 shadow-sm h-16 flex items-center justify-around">
       <CompanyLogo />
       <NavigationMenu className="w-full flex px-40">
         <NavigationMenuList>
