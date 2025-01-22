@@ -1,8 +1,8 @@
 import type { Metadata } from 'next';
-import { NavMenu } from '@/components';
+import './globals.css';
+import { Footer, Navbar } from '@/components';
 import { fira } from '@/components/ui/fonts';
 import { cn } from '@/lib/utils';
-import '@/styles/globals.css';
 import { Toaster } from 'sonner';
 
 export const metadata: Metadata = {
@@ -20,14 +20,10 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="es" suppressHydrationWarning>
-      <body
-        className={cn(
-          fira.className,
-          'bg-white text-black dark:bg-black dark:text-white dark:bg-opacity-90 dark:text-opacity-90'
-        )}
-      >
-        <NavMenu />
+      <body className={cn(fira.className, 'antialiased')}>
+        <Navbar />
         {children}
+        <Footer />
         <Toaster />
       </body>
     </html>

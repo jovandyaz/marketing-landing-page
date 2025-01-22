@@ -8,6 +8,7 @@ export const CompanyLogo = () => (
       fill
       style={{ objectFit: 'cover' }}
       priority
+      sizes="100%"
     />
   </div>
 );
