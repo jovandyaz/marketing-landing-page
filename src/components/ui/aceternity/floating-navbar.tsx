@@ -2,11 +2,10 @@
 
 import React, { JSX, useState } from 'react';
 import Link from 'next/link';
-import { Button } from '../button';
-import { CompanyLogo } from '../icons';
+import { MenuButton, NavLink } from '@/components/ui';
+import { CompanyLogo } from '@/components/ui/icons';
 import { cn } from '@/lib/utils';
 import { AnimatePresence, motion, useMotionValueEvent, useScroll } from 'framer-motion';
-import { RiCloseLine, RiMenu3Line } from 'react-icons/ri';
 
 export const FloatingNav = ({
   navItems,
@@ -30,7 +29,7 @@ export const FloatingNav = ({
     }
 
     if (hasScrolled) {
-      const previous = scrollY.getPrevious() || 0;
+      const previous = scrollY.getPrevious() ?? 0;
       const direction = latest - previous;
 
       if (latest < 50) {
@@ -43,6 +42,10 @@ export const FloatingNav = ({
 
   const toggleMenu = () => {
     setIsMenuOpen(!isMenuOpen);
+  };
+
+  const handleNavClick = () => {
+    setIsMenuOpen(false);
   };
 
   return (
@@ -69,26 +72,18 @@ export const FloatingNav = ({
         </Link>
 
         <div className="hidden md:flex items-center space-x-8">
-          {navItems.map((navItem, idx) => (
-            <Link
-              key={`desktop-link-${idx}`}
+          {navItems.map(navItem => (
+            <NavLink
+              key={`desktop-link-${navItem.name}`}
               href={navItem.link}
-              className="text-sm font-medium text-gray-600 hover:text-gray-900 dark:text-gray-300 dark:hover:text-white transition-colors"
+              layoutId="desktop-nav"
             >
               {navItem.name}
-            </Link>
+            </NavLink>
           ))}
         </div>
 
-        <Button
-          onClick={toggleMenu}
-          className="md:hidden relative z-10 p-2 text-gray-600 hover:text-gray-900 dark:text-gray-300 dark:hover:text-white"
-          aria-label={isMenuOpen ? 'Close menu' : 'Open menu'}
-          aria-expanded={isMenuOpen}
-          aria-controls="mobile-menu"
-        >
-          {isMenuOpen ? <RiCloseLine className="h-8 w-8" /> : <RiMenu3Line className="h-8 w-8" />}
-        </Button>
+        <MenuButton isOpen={isMenuOpen} toggle={toggleMenu} />
 
         <AnimatePresence>
           {isMenuOpen && (
@@ -101,15 +96,15 @@ export const FloatingNav = ({
               id="mobile-menu"
             >
               <div className="flex flex-col space-y-4">
-                {navItems.map((navItem, idx) => (
-                  <Link
-                    key={`mobile-link-${idx}`}
+                {navItems.map(navItem => (
+                  <NavLink
+                    key={`mobile-link-${navItem.name}`}
                     href={navItem.link}
-                    className="text-lg font-medium text-gray-600 hover:text-gray-900 dark:text-gray-300 dark:hover:text-white transition-colors"
-                    onClick={() => setIsMenuOpen(false)}
+                    onClick={handleNavClick}
+                    layoutId="mobile-nav"
                   >
                     {navItem.name}
-                  </Link>
+                  </NavLink>
                 ))}
               </div>
             </motion.div>

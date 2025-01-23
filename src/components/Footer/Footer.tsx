@@ -1,4 +1,3 @@
-import React from 'react';
 import { FloatingDock } from '../ui';
 import { FaInstagram, FaTiktok } from 'react-icons/fa6';
 
@@ -17,7 +16,7 @@ export const Footer = () => {
   ];
 
   return (
-    <div className="flex items-center justify-left w-full">
+    <div className="flex items-center justify-left w-full m-4">
       <FloatingDock items={links} />
     </div>
   );

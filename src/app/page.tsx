@@ -38,18 +38,6 @@ export default function Home() {
           </motion.div>
         </ImagesSlider>
       </div>
-
-      <div className="p-8">
-        <h2 className="text-2xl font-bold mb-4">Welcome to Our Platform</h2>
-        <p className="text-gray-600 mb-4">
-          Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt
-          ut labore et dolore magna aliqua.
-        </p>
-        <p className="text-gray-600">
-          Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea
-          commodo consequat.
-        </p>
-      </div>
     </main>
   );
 }

@@ -9,7 +9,7 @@ export const metadata: Metadata = {
   title: 'Sinergia',
   description: 'A place to learn and grow',
   icons: {
-    icon: '/sinergia-logo.png'
+    icon: '/logo.webp'
   }
 };
 
