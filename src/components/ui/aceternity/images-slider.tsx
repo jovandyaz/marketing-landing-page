@@ -2,7 +2,7 @@
 
 import React, { useCallback, useEffect, useState } from 'react';
 import { cn } from '@/lib/utils';
-import { AnimatePresence, motion } from 'framer-motion';
+import { AnimatePresence, motion } from 'motion/react';
 
 export const ImagesSlider = ({
   images,
@@ -118,7 +118,7 @@ export const ImagesSlider = ({
   return (
     <div
       className={cn(
-        'overflow-hidden size-full relative flex items-center justify-center',
+        'relative flex size-full items-center justify-center overflow-hidden',
         className
       )}
       style={{
@@ -127,7 +127,7 @@ export const ImagesSlider = ({
     >
       {areImagesLoaded && children}
       {areImagesLoaded && overlay && (
-        <div className={cn('absolute inset-0 bg-black/60 z-40', overlayClassName)} />
+        <div className={cn('absolute inset-0 z-40 bg-black/60', overlayClassName)} />
       )}
 
       {areImagesLoaded && (
@@ -139,7 +139,7 @@ export const ImagesSlider = ({
             animate="visible"
             exit={direction === 'up' ? 'upExit' : 'downExit'}
             variants={slideVariants}
-            className="image size-full absolute inset-0 object-cover object-center"
+            className="image absolute inset-0 size-full object-cover object-center"
           />
         </AnimatePresence>
       )}

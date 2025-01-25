@@ -32,5 +32,5 @@ module.exports = {
   importOrderParserPlugins: ['typescript', 'jsx', 'decorators-legacy'],
   importOrderMergeDuplicateImports: true,
   importOrderCombineTypeAndValueImports: true,
-  plugins: ['@trivago/prettier-plugin-sort-imports']
+  plugins: ['@trivago/prettier-plugin-sort-imports', 'prettier-plugin-tailwindcss']
 };

@@ -16,7 +16,7 @@ export const Footer = () => {
   ];
 
   return (
-    <div className="flex items-center justify-left w-full m-4">
+    <div className="justify-left m-4 flex w-full items-center">
       <FloatingDock items={links} />
     </div>
   );

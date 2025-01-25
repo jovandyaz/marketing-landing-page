@@ -1,5 +1,5 @@
 import { Button } from '@/components/ui';
-import { motion } from 'framer-motion';
+import { motion } from 'motion/react';
 
 interface MenuButtonProps {
   isOpen: boolean;
@@ -10,7 +10,7 @@ export const MenuButton = ({ isOpen, toggle }: MenuButtonProps) => {
   return (
     <Button
       onClick={toggle}
-      className="md:hidden relative z-10 w-10 h-10 flex items-center justify-center"
+      className="relative z-10 flex h-10 w-10 items-center justify-center md:hidden"
       aria-label={isOpen ? 'Close menu' : 'Open menu'}
       aria-expanded={isOpen}
       aria-controls="mobile-menu"

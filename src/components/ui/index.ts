@@ -4,3 +4,7 @@ export * from './aceternity/images-slider';
 export * from './button';
 export * from './MenuButton';
 export * from './NavLink';
+export * from './icon-logo';
+export * from './Fade';
+export * from './BlobAnimation';
+export * from './Typewriter';

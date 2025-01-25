@@ -2,10 +2,9 @@
 
 import React, { JSX, useState } from 'react';
 import Link from 'next/link';
-import { MenuButton, NavLink } from '@/components/ui';
-import { CompanyLogo } from '@/components/ui/icons';
+import { IconLogo, MenuButton, NavLink } from '@/components/ui';
 import { cn } from '@/lib/utils';
-import { AnimatePresence, motion, useMotionValueEvent, useScroll } from 'framer-motion';
+import { AnimatePresence, motion, useMotionValueEvent, useScroll } from 'motion/react';
 
 export const FloatingNav = ({
   navItems,
@@ -63,15 +62,15 @@ export const FloatingNav = ({
           duration: 0.2
         }}
         className={cn(
-          'flex w-full px-4 py-2 justify-between items-center bg-white dark:bg-black border-b border-gray-100 dark:border-gray-800 z-5000',
+          'z-5000 flex w-full items-center justify-between border-b border-gray-100 bg-white p-4 dark:border-gray-800 dark:bg-black',
           className
         )}
       >
         <Link href="/" className="relative z-10">
-          <CompanyLogo />
+          <IconLogo src="/logo-plain.svg" alt="Sinergia" width={120} height={40} />
         </Link>
 
-        <div className="hidden md:flex items-center space-x-8">
+        <div className="hidden items-center space-x-8 md:flex">
           {navItems.map(navItem => (
             <NavLink
               key={`desktop-link-${navItem.name}`}
@@ -92,7 +91,7 @@ export const FloatingNav = ({
               animate={{ opacity: 1, y: 0 }}
               exit={{ opacity: 0, y: -20 }}
               transition={{ duration: 0.2 }}
-              className="absolute top-0 left-0 right-0 bg-white dark:bg-black min-h-screen px-6 py-20 md:hidden"
+              className="absolute top-0 right-0 left-0 min-h-screen bg-white px-6 py-20 md:hidden dark:bg-black"
               id="mobile-menu"
             >
               <div className="flex flex-col space-y-4">
