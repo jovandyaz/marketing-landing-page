@@ -4,7 +4,7 @@ import { BlobAnimation, FadeContainer, FadeDiv, FadeSpan, Typewriter } from '../
 export const Hero = () => {
   return (
     <section aria-label="hero" className="mx-auto max-w-6xl px-4 sm:px-6 lg:px-8">
-      <FadeContainer className="grid grid-cols-1 items-center gap-12 md:grid-cols-2 md:gap-16">
+      <FadeContainer className="grid grid-cols-1 items-center gap-12 md:grid-cols-2 md:gap-24">
         <FadeDiv className="space-y-6 md:col-start-1 md:row-start-1">
           <h1 className="text-4xl font-bold tracking-tight text-gray-900 sm:text-5xl lg:text-6xl">
             <FadeSpan className="block">El éxito llega</FadeSpan>

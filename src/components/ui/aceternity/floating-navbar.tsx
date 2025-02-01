@@ -66,7 +66,7 @@ export const FloatingNav = ({
           className
         )}
       >
-        <Link href="/" className="relative z-10">
+        <Link href="/" className="relative z-10" onClick={handleNavClick}>
           <IconLogo src="/logo-plain.svg" alt="Sinergia" width={120} height={40} />
         </Link>
 
