@@ -1,10 +1,10 @@
-import { Fira_Code, Inter } from 'next/font/google';
+import { Inter, Poppins } from 'next/font/google';
 
 export const inter = Inter({
   subsets: ['latin']
 });
 
-export const fira = Fira_Code({
+export const poppins = Poppins({
   weight: '400',
   subsets: ['latin']
 });

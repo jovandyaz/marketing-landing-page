@@ -1,9 +1,10 @@
 import type { Metadata } from 'next';
 import './globals.css';
 import { Footer, Navbar } from '@/components';
-import { fira } from '@/components/ui/fonts';
+import { poppins } from '@/components/ui/fonts';
 import { cn } from '@/lib/utils';
 import { Analytics } from '@vercel/analytics/next';
+import { Toaster } from 'sonner';
 
 export const metadata: Metadata = {
   title: 'Sinergia',
@@ -21,11 +22,12 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="es">
-      <body className={cn(fira.className, 'antialiased')} suppressHydrationWarning>
+      <body className={cn(poppins.className, 'antialiased')} suppressHydrationWarning>
         <Navbar />
         {children}
         <Analytics />
         <Footer />
+        <Toaster position="bottom-right" />
       </body>
     </html>
   );
