@@ -91,7 +91,7 @@ export const FloatingNav = ({
               animate={{ opacity: 1, y: 0 }}
               exit={{ opacity: 0, y: -20 }}
               transition={{ duration: 0.2 }}
-              className="absolute top-0 right-0 left-0 min-h-screen bg-white px-6 py-20 md:hidden dark:bg-black"
+              className="absolute top-0 right-0 left-0 min-h-screen bg-white px-6 py-20 md:hidden"
               id="mobile-menu"
             >
               <div className="flex flex-col space-y-4">

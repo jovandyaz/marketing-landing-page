@@ -10,15 +10,17 @@ export const MenuButton = ({ isOpen, toggle }: MenuButtonProps) => {
   return (
     <Button
       onClick={toggle}
-      className="relative z-10 flex h-10 w-10 items-center justify-center md:hidden"
+      variant="ghost"
+      className="relative z-10 flex h-12 w-12 items-center justify-center md:hidden"
       aria-label={isOpen ? 'Close menu' : 'Open menu'}
       aria-expanded={isOpen}
       aria-controls="mobile-menu"
+      size="icon"
     >
       <motion.svg
-        width="24"
-        height="24"
-        viewBox="0 0 24 24"
+        width="32"
+        height="32"
+        viewBox="0 0 32 32"
         className="text-current"
         initial={false}
         animate={isOpen ? 'open' : 'closed'}
@@ -26,36 +28,24 @@ export const MenuButton = ({ isOpen, toggle }: MenuButtonProps) => {
         <motion.path
           fill="none"
           stroke="currentColor"
-          strokeWidth="2"
+          strokeWidth="3"
           strokeLinecap="round"
-          d="M 2 4 L 22 4"
+          d="M 2 10 L 30 10"
           variants={{
-            open: { d: 'M 3 20 L 21 3' },
-            closed: { d: 'M 2 4 L 22 4' }
+            open: { d: 'M 4 28 L 28 4' },
+            closed: { d: 'M 2 10 L 30 10' }
           }}
           transition={{ duration: 0.3, ease: 'easeInOut' }}
         />
         <motion.path
           fill="none"
           stroke="currentColor"
-          strokeWidth="2"
+          strokeWidth="3"
           strokeLinecap="round"
-          d="M 2 12 L 22 12"
+          d="M 2 22 L 30 22"
           variants={{
-            open: { opacity: 0 },
-            closed: { opacity: 1 }
-          }}
-          transition={{ duration: 0.3, ease: 'easeInOut' }}
-        />
-        <motion.path
-          fill="none"
-          stroke="currentColor"
-          strokeWidth="2"
-          strokeLinecap="round"
-          d="M 2 20 L 22 20"
-          variants={{
-            open: { d: 'M 3 3 L 21 20' },
-            closed: { d: 'M 2 20 L 22 20' }
+            open: { d: 'M 4 4 L 28 28' },
+            closed: { d: 'M 2 22 L 30 22' }
           }}
           transition={{ duration: 0.3, ease: 'easeInOut' }}
         />
