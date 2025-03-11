@@ -37,12 +37,12 @@ export const Footer = () => {
   };
 
   return (
-    <div className="px-4 py-10 lg:px-2">
+    <div className="px-4 py-6 md:px-2">
       <footer id="footer" className="relative mx-auto flex max-w-6xl flex-wrap pt-4">
-        <div className="mr-auto flex w-full justify-between lg:w-fit lg:flex-col">
+        <div className="mr-auto flex w-full justify-between md:w-fit md:flex-col">
           <Link
             href="/"
-            className="flex items-center font-medium text-gray-700 select-none sm:text-sm"
+            className="flex items-center pl-2 font-medium text-gray-700 select-none sm:text-sm"
           >
             <IconLogo
               src="/logo.webp"
@@ -56,7 +56,7 @@ export const Footer = () => {
           </Link>
 
           <div>
-            <div className="mt-4 flex items-center">
+            <div className="flex items-center">
               <Link
                 href={SINERGIA_INSTAGRAM_URL}
                 target="_blank"
@@ -82,14 +82,14 @@ export const Footer = () => {
                 <RiWhatsappFill className="size-5" />
               </Link>
             </div>
-            <div className="ml-2 hidden text-sm text-gray-700 lg:inline">
+            <div className="ml-2 hidden text-sm text-gray-700 md:inline">
               &copy; {CURRENT_YEAR} Sinergia Studio.
             </div>
           </div>
         </div>
 
         {Object.entries(sections).map(([key, section]) => (
-          <div key={key} className="mt-10 min-w-44 pl-2 lg:mt-0 lg:pl-0">
+          <div key={key} className="mt-10 min-w-44 pl-2 md:mt-0 md:pl-0">
             <h3 className="mb-4 font-medium text-gray-900 sm:text-sm">{section.title}</h3>
             <ul className="space-y-4">
               {section.items.map(item => (

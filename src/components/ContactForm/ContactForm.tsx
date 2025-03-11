@@ -73,7 +73,7 @@ export const ContactForm = () => {
     <Form {...form}>
       <form
         onSubmit={form.handleSubmit(onSubmit)}
-        className="w-full max-w-[320px] space-y-6 md:max-w-[480px] md:space-y-8 lg:max-w-[640px] lg:space-y-10"
+        className="w-full max-w-[320px] space-y-6 md:max-w-[480px] md:space-y-8"
       >
         <FormField
           control={form.control}

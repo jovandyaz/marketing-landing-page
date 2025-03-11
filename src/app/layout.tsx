@@ -22,11 +22,16 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="es">
-      <body className={cn(poppins.className, 'antialiased')} suppressHydrationWarning>
-        <Navbar />
-        {children}
-        <Analytics />
+      <body
+        className={cn(poppins.className, 'flex min-h-screen flex-col antialiased')}
+        suppressHydrationWarning
+      >
+        <header className="w-full">
+          <Navbar />
+        </header>
+        <main className="w-full flex-grow pt-16 md:pt-20">{children}</main>
         <Footer />
+        <Analytics />
         <Toaster position="bottom-right" />
       </body>
     </html>

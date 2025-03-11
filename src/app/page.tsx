@@ -1,11 +1,15 @@
 'use client';
 
 import { Hero } from '@/components/Hero';
+import { SocialProof } from '@/components/SocialProof';
 
 export default function Home() {
   return (
-    <main className="flex w-full flex-col items-center justify-center pt-20 md:pt-8">
-      <Hero />
-    </main>
+    <>
+      <div className="flex h-[calc(100vh-64px)] w-full md:h-[calc(100vh-80px)]">
+        <Hero />
+      </div>
+      <SocialProof />
+    </>
   );
 }
