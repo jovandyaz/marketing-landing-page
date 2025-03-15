@@ -70,126 +70,152 @@ export const ContactForm = () => {
   };
 
   return (
-    <Form {...form}>
-      <form
-        onSubmit={form.handleSubmit(onSubmit)}
-        className="w-full max-w-[320px] space-y-6 md:max-w-[480px] md:space-y-8"
-      >
-        <FormField
-          control={form.control}
-          name="name"
-          render={({ field }) => (
-            <FormItem>
-              <FormLabel>Nombre completo</FormLabel>
-              <FormControl>
-                <Input placeholder="Tu nombre" {...field} />
-              </FormControl>
-              <FormMessage />
-            </FormItem>
-          )}
-        />
+    <div className="overflow-hidden rounded-lg bg-gradient-to-br from-white to-gray-50 p-6 shadow-md md:p-8">
+      <div className="relative mb-8">
+        <div className="absolute top-0 -left-4 h-full w-1 bg-yellow-400"></div>
+        <h2 className="text-2xl font-bold text-gray-900">Contáctanos</h2>
+        <p className="mt-2 text-gray-600">
+          Completa el formulario y te responderemos a la{' '}
+          <span className="font-medium text-pink-500">brevedad</span>
+        </p>
+      </div>
 
-        <FormField
-          control={form.control}
-          name="email"
-          render={({ field }) => (
-            <FormItem>
-              <FormLabel>Email</FormLabel>
-              <FormControl>
-                <Input type="email" placeholder="Tu email" {...field} />
-              </FormControl>
-              <FormMessage />
-            </FormItem>
-          )}
-        />
-
-        <FormField
-          control={form.control}
-          name="phone"
-          render={({ field }) => (
-            <FormItem>
-              <FormLabel>Teléfono</FormLabel>
-              <FormControl>
-                <Input placeholder="10 dígitos" {...field} />
-              </FormControl>
-              <FormMessage />
-            </FormItem>
-          )}
-        />
-
-        <FormField
-          control={form.control}
-          name="company"
-          render={({ field }) => (
-            <FormItem>
-              <FormLabel>
-                Empresa <span className="text-gray-400">(Opcional)</span>
-              </FormLabel>
-              <FormControl>
-                <Input placeholder="Nombre de tu empresa" {...field} />
-              </FormControl>
-              <FormMessage />
-            </FormItem>
-          )}
-        />
-
-        <FormField
-          control={form.control}
-          name="source"
-          render={({ field }) => (
-            <FormItem>
-              <FormLabel>¿Cómo nos conociste?</FormLabel>
-              <Select onValueChange={field.onChange} value={field.value}>
+      <Form {...form}>
+        <form
+          onSubmit={form.handleSubmit(onSubmit)}
+          className="w-full max-w-[320px] space-y-6 md:max-w-[480px] md:space-y-8"
+        >
+          <FormField
+            control={form.control}
+            name="name"
+            render={({ field }) => (
+              <FormItem>
+                <FormLabel className="font-medium">Nombre completo</FormLabel>
                 <FormControl>
-                  <SelectTrigger className="bg-white">
-                    <SelectValue placeholder="Selecciona una opción" />
-                  </SelectTrigger>
+                  <Input
+                    placeholder="Tu nombre"
+                    {...field}
+                    className="transition-colors focus-within:border-yellow-400 hover:border-pink-200"
+                  />
                 </FormControl>
-                <SelectContent className="bg-white">
-                  {SOURCE_OPTIONS.map(option => (
-                    <SelectItem
-                      key={option.value}
-                      value={option.value}
-                      className="cursor-pointer hover:bg-gray-100"
-                    >
-                      {option.label}
-                    </SelectItem>
-                  ))}
-                </SelectContent>
-              </Select>
-              <FormMessage />
-            </FormItem>
-          )}
-        />
+                <FormMessage />
+              </FormItem>
+            )}
+          />
 
-        <FormField
-          control={form.control}
-          name="message"
-          render={({ field }) => (
-            <FormItem>
-              <FormLabel>Mensaje</FormLabel>
-              <FormControl>
-                <Textarea
-                  placeholder="¿En qué podemos ayudarte?"
-                  className="min-h-[120px]"
-                  {...field}
-                />
-              </FormControl>
-              <FormMessage />
-            </FormItem>
-          )}
-        />
+          <FormField
+            control={form.control}
+            name="email"
+            render={({ field }) => (
+              <FormItem>
+                <FormLabel>Email</FormLabel>
+                <FormControl>
+                  <Input type="email" placeholder="Tu email" {...field} />
+                </FormControl>
+                <FormMessage />
+              </FormItem>
+            )}
+          />
 
-        <div className="flex justify-center">
-          <Button
-            className="cursor-pointer"
-            type="submit"
-            disabled={!form.formState.isValid || form.formState.isSubmitting}
-          >
-            {form.formState.isSubmitting ? 'Enviando...' : 'Enviar mensaje'}
-          </Button>
-        </div>
-      </form>
-    </Form>
+          <FormField
+            control={form.control}
+            name="phone"
+            render={({ field }) => (
+              <FormItem>
+                <FormLabel>Teléfono</FormLabel>
+                <FormControl>
+                  <Input placeholder="10 dígitos" {...field} />
+                </FormControl>
+                <FormMessage />
+              </FormItem>
+            )}
+          />
+
+          <FormField
+            control={form.control}
+            name="company"
+            render={({ field }) => (
+              <FormItem>
+                <FormLabel>
+                  Empresa <span className="text-gray-400">(Opcional)</span>
+                </FormLabel>
+                <FormControl>
+                  <Input placeholder="Nombre de tu empresa" {...field} />
+                </FormControl>
+                <FormMessage />
+              </FormItem>
+            )}
+          />
+
+          <FormField
+            control={form.control}
+            name="source"
+            render={({ field }) => (
+              <FormItem>
+                <FormLabel>¿Cómo nos conociste?</FormLabel>
+                <Select onValueChange={field.onChange} value={field.value}>
+                  <FormControl>
+                    <SelectTrigger className="bg-white">
+                      <SelectValue placeholder="Selecciona una opción" />
+                    </SelectTrigger>
+                  </FormControl>
+                  <SelectContent className="bg-white">
+                    {SOURCE_OPTIONS.map(option => (
+                      <SelectItem
+                        key={option.value}
+                        value={option.value}
+                        className="cursor-pointer hover:bg-gray-100"
+                      >
+                        {option.label}
+                      </SelectItem>
+                    ))}
+                  </SelectContent>
+                </Select>
+                <FormMessage />
+              </FormItem>
+            )}
+          />
+
+          <FormField
+            control={form.control}
+            name="message"
+            render={({ field }) => (
+              <FormItem>
+                <FormLabel className="font-medium">Mensaje</FormLabel>
+                <FormControl>
+                  <Textarea
+                    placeholder="¿En qué podemos ayudarte?"
+                    className="min-h-[120px] transition-colors focus-within:border-yellow-400 hover:border-pink-200"
+                    {...field}
+                  />
+                </FormControl>
+                <FormMessage />
+              </FormItem>
+            )}
+          />
+
+          <div className="flex justify-center pt-4">
+            <Button
+              className="relative cursor-pointer overflow-hidden bg-fuchsia-400 px-8 py-2 font-medium text-white shadow-md transition-all duration-300 hover:bg-fuchsia-500 hover:shadow-lg"
+              type="submit"
+              disabled={!form.formState.isValid || form.formState.isSubmitting}
+            >
+              {form.formState.isSubmitting ? 'Enviando...' : 'Enviar mensaje'}
+            </Button>
+          </div>
+
+          <div className="mt-4 flex justify-center">
+            <div className="flex flex-wrap items-center justify-center gap-2">
+              <div className="rounded-full bg-yellow-100 px-3 py-1 text-xs text-yellow-800">
+                #TeAyudamos
+              </div>
+              <div className="rounded-full bg-pink-100 px-3 py-1 text-xs text-pink-800">
+                #Contacto
+              </div>
+            </div>
+          </div>
+        </form>
+      </Form>
+    </div>
   );
 };
