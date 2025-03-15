@@ -50,7 +50,7 @@ export const SocialProof = () => {
   return (
     <section className="w-full bg-white py-4 md:py-8">
       <div className="container mx-auto px-4 md:px-8">
-        <div className="mx-auto mb-16 max-w-4xl">
+        <div className="mx-auto mb-24 max-w-4xl">
           <Card className="overflow-hidden bg-gradient-to-br from-white to-gray-50 shadow-md">
             <CardContent className="p-6 md:p-8">
               <div className="relative mb-6">
@@ -61,7 +61,7 @@ export const SocialProof = () => {
                   transition={{ duration: 0.5 }}
                 >
                   <h3 className="mb-4 text-sm font-medium tracking-wider text-gray-500 uppercase">
-                    Hola, soy Mary Carmen.
+                    Hola, soy Maca Pavón.
                   </h3>
                 </motion.div>
 
@@ -106,7 +106,7 @@ export const SocialProof = () => {
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.7 }}
-          className="mb-8 text-center"
+          className="pt-16 mb-8 text-center"
         >
           <h2 className="relative mb-2 text-2xl font-bold text-gray-900 md:text-3xl">
             Marcas que{' '}
@@ -121,7 +121,7 @@ export const SocialProof = () => {
           </p>
         </motion.div>
 
-        <div className="relative w-full overflow-hidden">
+        <div className="relative mb-8 w-full overflow-hidden">
           <div className="absolute top-0 bottom-0 left-0 z-10 w-16 bg-gradient-to-r from-white to-transparent"></div>
           <div className="absolute top-0 right-0 bottom-0 z-10 w-16 bg-gradient-to-l from-white to-transparent"></div>
 
