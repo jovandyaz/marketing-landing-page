@@ -11,9 +11,11 @@ interface NavLinkProps {
   children: React.ReactNode;
   onClick?: () => void;
   layoutId: string;
+  className?: string;
+  highlighted?: boolean;
 }
 
-export const NavLink = ({ href, children, onClick, layoutId }: NavLinkProps) => {
+export const NavLink = ({ href, children, onClick, layoutId, className, highlighted }: NavLinkProps) => {
   const pathname = usePathname();
   const isActive = pathname === href;
   const isMobile = layoutId === 'mobile-nav';
@@ -29,28 +31,36 @@ export const NavLink = ({ href, children, onClick, layoutId }: NavLinkProps) => 
     >
       <motion.span
         className={cn(
-          'inline-block font-medium transition-colors',
-          isActive
-            ? 'text-gray-900 dark:text-white'
-            : 'text-gray-600 hover:text-gray-900 dark:text-gray-300 dark:hover:text-white'
+          'inline-block text-lg font-bold transition-colors',
+          !isMobile && highlighted
+            ? [
+                'px-3 py-2 border-3 rounded-md border-fuchsia-400',
+                isActive || isHovered ? 'text-fuchsia-500 dark:text-fuchsia-400' : 'text-gray-600 dark:text-gray-300'
+              ]
+            : [
+                isActive
+                  ? 'text-gray-900 dark:text-white'
+                  : 'text-gray-600 hover:text-gray-900 dark:text-gray-300 dark:hover:text-white'
+              ],
+          className
         )}
       >
         {children}
 
-        {isActive && !isMobile && (
+        {isActive && !isMobile && (!highlighted || isMobile) && (
           <motion.span
             layoutId={layoutId}
-            className="absolute right-0 -bottom-2 left-0 h-0.5 bg-gray-700 dark:bg-white"
+            className="absolute right-0 -bottom-2 left-0 h-0.5 bg-yellow-400 dark:bg-white"
             initial={false}
             transition={{ duration: 0.3 }}
           />
         )}
 
         <AnimatePresence>
-          {!isActive && !isMobile && isHovered && (
+          {!isActive && !isMobile && isHovered && !highlighted && (
             <motion.span
               key="hover-underline"
-              className="absolute right-0 -bottom-2 left-0 h-0.5 bg-gray-300 dark:bg-gray-600"
+              className="absolute right-0 -bottom-2 left-0 h-0.5 bg-yellow-300 dark:bg-gray-600"
               initial={{ opacity: 0 }}
               animate={{ opacity: 1 }}
               exit={{ opacity: 0 }}

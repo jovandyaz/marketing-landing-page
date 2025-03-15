@@ -14,6 +14,7 @@ export const FloatingNav = ({
     name: string;
     link: string;
     icon?: JSX.Element;
+    highlighted?: boolean;
   }[];
   className?: string;
 }) => {
@@ -76,6 +77,7 @@ export const FloatingNav = ({
               key={`desktop-link-${navItem.name}`}
               href={navItem.link}
               layoutId="desktop-nav"
+              highlighted={navItem.highlighted}
             >
               {navItem.name}
             </NavLink>
@@ -101,6 +103,7 @@ export const FloatingNav = ({
                     href={navItem.link}
                     onClick={handleNavClick}
                     layoutId="mobile-nav"
+                    highlighted={navItem.highlighted}
                   >
                     {navItem.name}
                   </NavLink>

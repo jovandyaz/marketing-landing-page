@@ -11,7 +11,8 @@ export const Navbar = () => {
           },
           {
             name: 'Contacto',
-            link: '/contact'
+            link: '/contact',
+            highlighted: true
           }
         ]}
       />
