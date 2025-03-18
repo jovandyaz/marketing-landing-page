@@ -12,18 +12,22 @@ export const Hero = () => {
               <Typewriter
                 text={['te atreves a soñar', 'das el primer paso', 'trabajamos junt@s!']}
                 speed={70}
-                className="text-yellow-400"
+                className="text-secondary-600"
                 waitTime={1500}
                 deleteSpeed={40}
                 cursorChar={'_'}
               />
             </FadeSpan>
           </h1>
-          <p className="text-base text-gray-700 md:text-xl">
-            <FadeSpan>
-              Porque junt@s haremos que tus ideas florezcan y te lleven a donde siempre has deseado.
+          <FadeDiv className="flex flex-col gap-2 space-y-4">
+            <FadeSpan className="text-base text-gray-700 md:text-xl">
+              Porque junt@s transformaremos tus ideas en realidades poderosas, llevándote hasta las
+              metas que siempre has anhelado.
             </FadeSpan>
-          </p>
+            <FadeSpan className="text-primary-600 text-2xl font-bold">
+              ¿Lista para hacer brillar tu marca?
+            </FadeSpan>
+          </FadeDiv>
         </FadeDiv>
 
         <div className="relative order-1 w-full md:order-2">
@@ -31,7 +35,7 @@ export const Hero = () => {
             <BlobAnimation>
               <div className="relative aspect-square w-full overflow-hidden rounded-xl shadow-lg">
                 <Image
-                  alt="Farm with vehicles"
+                  alt="Mujer trabajando en su computadora"
                   src="/images/photo_home.png"
                   fill
                   priority

@@ -15,7 +15,14 @@ interface NavLinkProps {
   highlighted?: boolean;
 }
 
-export const NavLink = ({ href, children, onClick, layoutId, className, highlighted }: NavLinkProps) => {
+export const NavLink = ({
+  href,
+  children,
+  onClick,
+  layoutId,
+  className,
+  highlighted
+}: NavLinkProps) => {
   const pathname = usePathname();
   const isActive = pathname === href;
   const isMobile = layoutId === 'mobile-nav';
@@ -34,8 +41,10 @@ export const NavLink = ({ href, children, onClick, layoutId, className, highligh
           'inline-block text-lg font-bold transition-colors',
           !isMobile && highlighted
             ? [
-                'px-3 py-2 border-3 rounded-md border-fuchsia-400',
-                isActive || isHovered ? 'text-fuchsia-500 dark:text-fuchsia-400' : 'text-gray-600 dark:text-gray-300'
+                'border-primary-600 rounded-md border-3 px-3 py-2',
+                isActive || isHovered
+                  ? 'text-primary-600 dark:text-primary-500'
+                  : 'text-gray-600 dark:text-gray-300'
               ]
             : [
                 isActive

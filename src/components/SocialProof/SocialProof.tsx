@@ -1,51 +1,21 @@
 import React from 'react';
 import Image from 'next/image';
+import { brands } from './brands';
+import { highlightedWords, profesionalDescription } from './texts';
 import { Card, CardContent } from '@/components/ui/card';
 import { motion } from 'motion/react';
 
-interface Brand {
-  id: number;
-  name: string;
-  logo: string;
+export function highlightText(text: string, highlightedWords: string[]) {
+  let result = text;
+  highlightedWords.forEach(word => {
+    const regex = new RegExp(`(${word})`, 'gi');
+    result = result.replace(regex, '<span class="text-yellow-500 font-bold">$1</span>');
+  });
+  return <span dangerouslySetInnerHTML={{ __html: result }} />;
 }
 
 export const SocialProof = () => {
-  const brands: Brand[] = [
-    { id: 1, name: 'Herbal Essences', logo: '/images/brands/herbal_essences.webp' },
-    { id: 2, name: 'Nivea', logo: '/images/brands/nivea.webp' },
-    { id: 3, name: 'Santa Carne', logo: '/images/brands/santa_carne.webp' },
-    { id: 4, name: 'Garnier Fructis', logo: '/images/brands/garnier_fructis.webp' },
-    { id: 5, name: 'Carlota', logo: '/images/brands/carlota.webp' },
-    { id: 6, name: 'Tlali', logo: '/images/brands/tlali.webp' }
-  ];
-
   const duplicatedBrands = [...brands, ...brands, ...brands, ...brands];
-
-  const highlightedWords = [
-    'Marketing',
-    'Community Management',
-    'emprendedora',
-    'freelancer',
-    'redes sociales',
-    'metodología efectiva'
-  ];
-
-  const textParts = [
-    'Especialista en Marketing y Community Management',
-    'con experiencia como emprendedora y freelancer.',
-    'Mi trayectoria me llevó a descubrir el poder de las redes sociales,',
-    'colaborando con marcas reconocidas y desarrollando una',
-    'metodología efectiva para posicionamiento de marca.'
-  ];
-
-  const highlightText = (text: string) => {
-    let result = text;
-    highlightedWords.forEach(word => {
-      const regex = new RegExp(`(${word})`, 'gi');
-      result = result.replace(regex, '<span class="text-yellow-500 font-bold">$1</span>');
-    });
-    return <span dangerouslySetInnerHTML={{ __html: result }} />;
-  };
 
   return (
     <section className="w-full bg-white py-4 md:py-8">
@@ -65,7 +35,7 @@ export const SocialProof = () => {
                   </h3>
                 </motion.div>
 
-                {textParts.map((part, index) => (
+                {profesionalDescription.map((part, index) => (
                   <motion.div
                     key={index}
                     initial={{ opacity: 0, y: 20 }}
@@ -77,7 +47,7 @@ export const SocialProof = () => {
                     }}
                     className={`text-lg md:text-xl ${index > 0 ? 'mt-2' : 'font-bold'}`}
                   >
-                    {highlightText(part)}
+                    {highlightText(part, highlightedWords)}
                   </motion.div>
                 ))}
               </div>
@@ -106,7 +76,7 @@ export const SocialProof = () => {
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.7 }}
-          className="pt-16 mb-8 text-center"
+          className="mb-8 pt-16 text-center"
         >
           <h2 className="relative mb-2 text-2xl font-bold text-gray-900 md:text-3xl">
             Marcas que{' '}
@@ -117,7 +87,7 @@ export const SocialProof = () => {
             en mí
           </h2>
           <p className="mx-auto mt-4 max-w-2xl text-gray-600">
-            Colaboramos con grandes marcas y aquellas que aspiran a serlo
+            Colaboro con grandes marcas y aquellas que aspiran a serlo
           </p>
         </motion.div>
 
@@ -130,7 +100,7 @@ export const SocialProof = () => {
               {duplicatedBrands.map((brand, index) => (
                 <div
                   key={`${brand.id}-${index}`}
-                  className="relative h-20 w-28 flex-shrink-0 grayscale transition-all duration-300 hover:grayscale-0 md:h-24 md:w-32"
+                  className="relative h-20 w-28 flex-shrink-0 transition-all duration-300 md:h-24 md:w-32"
                 >
                   <div className="flex h-full w-full items-center justify-center">
                     <Image
