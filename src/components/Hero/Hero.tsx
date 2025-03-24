@@ -3,10 +3,13 @@ import { BlobAnimation, FadeContainer, FadeDiv, FadeSpan, Typewriter } from '../
 
 export const Hero = () => {
   return (
-    <section aria-label="hero" className="flex w-full items-center justify-center px-4 md:px-8">
+    <section
+      aria-label="hero"
+      className="flex min-h-screen w-full items-center justify-center px-4 md:px-8"
+    >
       <FadeContainer className="mx-auto grid w-full max-w-6xl grid-cols-1 items-center gap-8 md:grid-cols-2 md:gap-24">
         <FadeDiv className="order-2 space-y-4 md:order-1 md:space-y-6">
-          <h1 className="text-3xl font-bold tracking-tight text-gray-900 md:text-5xl">
+          <h1 className="text-center text-3xl font-bold tracking-tight text-gray-900 md:text-left md:text-5xl">
             <FadeSpan className="block">El éxito llega cuando</FadeSpan>
             <FadeSpan className="block">
               <Typewriter
@@ -20,18 +23,18 @@ export const Hero = () => {
             </FadeSpan>
           </h1>
           <FadeDiv className="flex flex-col gap-2 space-y-4">
-            <FadeSpan className="text-base text-gray-700 md:text-xl">
+            <FadeSpan className="text-justify text-base text-gray-700 md:text-xl">
               Porque junt@s transformaremos tus ideas en realidades poderosas, llevándote hasta las
               metas que siempre has anhelado.
             </FadeSpan>
-            <FadeSpan className="text-primary-600 text-2xl font-bold">
+            <FadeSpan className="text-primary-600 text-center text-2xl font-bold md:text-justify">
               ¿Lista para hacer brillar tu marca?
             </FadeSpan>
           </FadeDiv>
         </FadeDiv>
 
-        <div className="relative order-1 w-full md:order-2">
-          <FadeDiv className="relative">
+        <div className="relative order-1 flex w-full items-center justify-center md:order-2">
+          <FadeDiv className="relative mx-auto w-full max-w-md">
             <BlobAnimation>
               <div className="relative aspect-square w-full overflow-hidden rounded-xl shadow-lg">
                 <Image

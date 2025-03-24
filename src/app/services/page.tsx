@@ -79,12 +79,12 @@ export default function ServicesPage() {
         </FadeContainer>
       </section>
 
-      <section className="w-full bg-white py-16 md:py-24">
+      <section className="w-full py-12 md:py-24">
         <div className="container mx-auto px-4 md:px-8">
           <div className="flex flex-col gap-16 md:flex-row md:items-center">
             <FadeDiv className="relative aspect-square overflow-hidden rounded-xl shadow-lg md:aspect-video md:w-2/3">
               <Image
-                alt="Equipo de la agencia de marketing trabajando"
+                alt="Mujer posando en el campo"
                 src="/images/photo_home_1.webp"
                 fill
                 sizes="(max-width: 768px) 100vw, 66vw"
