@@ -6,7 +6,7 @@ import { SocialProof } from '@/components/SocialProof';
 export default function Home() {
   return (
     <>
-      <div className="flex h-[calc(100vh-64px)] w-full md:h-[calc(100vh-80px)]">
+      <div className="flex min-h-screen w-full">
         <Hero />
       </div>
       <SocialProof />

@@ -88,7 +88,6 @@ export const Typewriter = ({
       }
     };
 
-    // Apply initial delay only at the start
     if (currentIndex === 0 && !isDeleting && displayText === '') {
       timeout = setTimeout(startTyping, initialDelay);
     } else {

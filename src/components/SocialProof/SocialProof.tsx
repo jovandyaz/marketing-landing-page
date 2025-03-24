@@ -1,5 +1,6 @@
 import React from 'react';
 import Image from 'next/image';
+import { Badge } from '../ui/badge';
 import { brands } from './brands';
 import { highlightedWords, profesionalDescription } from './texts';
 import { Card, CardContent } from '@/components/ui/card';
@@ -58,15 +59,24 @@ export const SocialProof = () => {
                 transition={{ duration: 0.6, delay: 0.8 }}
                 className="mt-6 flex flex-wrap items-center justify-start gap-3"
               >
-                <div className="rounded-full bg-yellow-100 px-3 py-1 text-sm text-yellow-800">
+                <Badge
+                  variant="secondary"
+                  className="bg-yellow-100 px-3 py-1.5 text-sm text-yellow-800"
+                >
                   #CreadoraDeContenido
-                </div>
-                <div className="rounded-full bg-purple-100 px-3 py-1 text-sm text-purple-800">
+                </Badge>
+                <Badge
+                  variant="secondary"
+                  className="bg-purple-100 px-3 py-1.5 text-sm text-purple-800"
+                >
                   #CommunityManager
-                </div>
-                <div className="rounded-full bg-blue-100 px-3 py-1 text-sm text-blue-800">
+                </Badge>
+                <Badge
+                  variant="secondary"
+                  className="bg-blue-100 px-3 py-1.5 text-sm text-blue-800"
+                >
                   #MarketingDigital
-                </div>
+                </Badge>
               </motion.div>
             </CardContent>
           </Card>

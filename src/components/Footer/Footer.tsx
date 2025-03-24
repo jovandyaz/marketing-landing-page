@@ -34,7 +34,10 @@ export const Footer = () => {
       <footer id="footer" className="mx-auto max-w-7xl">
         <div className="flex flex-col md:grid md:grid-cols-3 md:gap-8">
           <div className="flex items-start justify-between md:flex-col md:space-y-4">
-            <Link href="/" className="flex items-center font-medium text-gray-700 select-none">
+            <Link
+              href="/"
+              className="flex items-center font-medium text-gray-700 select-none md:ml-16"
+            >
               <IconLogo
                 src="/logo.webp"
                 alt="Sinergia Logo"

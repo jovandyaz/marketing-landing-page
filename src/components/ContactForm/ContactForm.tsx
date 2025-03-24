@@ -186,7 +186,7 @@ export const ContactForm = () => {
                   <FormControl>
                     <Textarea
                       placeholder="¿En qué podemos ayudarte?"
-                      className="min-h-[120px]"
+                      className="min-h-[80px]"
                       {...field}
                     />
                   </FormControl>
