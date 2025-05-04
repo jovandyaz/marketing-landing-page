@@ -1,0 +1,646 @@
+---
+description:
+globs: *.ts,*.tsx
+alwaysApply: false
+---
+## Project Structure
+
+### Feature-Based Architecture
+
+When designing project structure, implement these patterns:
+
+1. **Domain-Centric Organization**: Organize code by business domain rather than technical layer:
+
+   ```markdown
+   /features/authentication/
+   /features/product-catalog/
+   /features/checkout/
+   ```
+
+   NOT
+
+   ```markdown
+   /components/
+   /hooks/
+   /utilities/
+   ```
+
+2. **Cohesive Feature Modules**: Group related elements by functionality:
+
+   ```markdown
+   /features/product-catalog/
+     /components/
+     /hooks/
+     /types/
+     /utils/
+     /api/
+     /tests/
+   ```
+
+3. **Business-Focused Naming**: Use domain terminology in file and component names:
+
+   ```markdown
+   OrderProcessing.tsx
+   ProductCatalog.tsx
+   UserAuthentication.tsx
+   ```
+
+   NOT
+
+   ```markdown
+   DataTable.tsx
+   Form.tsx
+   Layout.tsx
+   ```
+
+4. **Clean Module Boundaries**: Define clear interfaces between feature modules:
+
+   ```typescript
+   // features/product-catalog/index.ts
+   export { ProductList } from './components/ProductList';
+   export type { Product } from './types';
+   export { useProducts } from './hooks/useProducts';
+   // Only export what other features need
+   ```
+
+5. **Logic Separation**: Isolate business logic from UI components:
+
+   ```markdown
+   /features/checkout/
+     /services/checkoutService.ts  // Pure business logic
+     /components/CheckoutForm.tsx  // UI presentation
+   ```
+
+## Technology Stack
+
+When generating solutions, use these technology configurations unless otherwise specified:
+
+### Frontend
+
+- **Core**: React 19 (Client Components only, no Server Components)
+- **Framework**: Next.js 15 with App Router (client-side rendering)
+- **Language**: TypeScript 5 with strict mode enabled
+- **State Management**:
+  - Zustand for global state
+  - React Context for feature-scoped state
+  - TanStack Query for server state
+- **Forms**: React Hook Form with Zod validation
+- **Styling**: Tailwind CSS v4 or @emotion/css
+- **Component Library**: shadcn/ui or Material-UI v7
+- **Testing**: Jest and React Testing Library (or Vitest)
+- **Linting**: ESLint with TypeScript rules
+
+### Backend
+
+- **Runtime**: Node.js (latest LTS)
+- **Framework**: Express.js or NestJS or FastAPI or Django
+- **Language**: TypeScript with strict mode or Python
+- **Database**: PostgreSQL with TypeORM or Prisma
+- **API**: RESTful or GraphQL (with Apollo or GraphQL Yoga)
+- **Testing**: Jest with Supertest or Vitest
+- **Authentication**: JWT, OAuth2, or NextAuth
+
+## Framework Best Practices
+
+### React and Next.js
+
+1. **Client-Side Architecture**: All components should be client components. Add the "use client" directive at the top of every component file when using Next.js.
+
+   ```typescript
+   'use client';
+
+   import React from 'react';
+
+   export function MyComponent() {
+     // Component implementation
+   }
+   ```
+
+2. **Custom Hooks Design**: Create hooks that:
+   - Follow the single responsibility principle
+   - Handle one concern well
+   - Provide clear return types
+   - Manage their own error states
+
+   ```typescript
+   function useProductData(productId: string) {
+     const [isLoading, setIsLoading] = useState(true);
+     const [error, setError] = useState<Error | null>(null);
+     const [product, setProduct] = useState<Product | null>(null);
+
+     useEffect(() => {
+       const fetchProduct = async () => {
+         try {
+           setIsLoading(true);
+           const data = await fetchProductById(productId);
+           setProduct(data);
+         } catch (err) {
+           setError(err instanceof Error ? err : new Error('Unknown error'));
+         } finally {
+           setIsLoading(false);
+         }
+       };
+
+       fetchProduct();
+     }, [productId]);
+
+     return { product, isLoading, error };
+   }
+   ```
+
+3. **Data Fetching Patterns**: Implement client-side data fetching using:
+   - TanStack Query/React Query for all data fetching needs
+   - Custom fetch wrappers with error handling
+   - Centralized API services for consistent data access
+
+   ```typescript
+   // api/productService.ts
+   export async function fetchProductById(id: string): Promise<Product> {
+     const response = await fetch(`/api/products/${id}`);
+     if (!response.ok) {
+       throw new Error(`Failed to fetch product: ${response.statusText}`);
+     }
+     return response.json();
+   }
+
+   // hooks/useProduct.ts
+   import { useQuery } from '@tanstack/react-query';
+   import { fetchProductById } from '../api/productService';
+
+   export function useProduct(id: string) {
+     return useQuery({
+       queryKey: ['product', id],
+       queryFn: () => fetchProductById(id),
+       staleTime: 5 * 60 * 1000, // 5 minutes
+     });
+   }
+   ```
+
+4. **Component Composition**: Structure components using composition patterns:
+
+   ```tsx
+   // Prefer this:
+   <Card>
+     <CardHeader>
+       <CardTitle>Product Name</CardTitle>
+     </CardHeader>
+     <CardContent>
+       <ProductDetails product={product} />
+     </CardContent>
+     <CardFooter>
+       <AddToCartButton productId={product.id} />
+     </CardFooter>
+   </Card>
+
+   // Over inheritance-based approaches
+   ```
+
+5. **Loading States**: Implement proper loading and error states:
+
+   ```tsx
+   function ProductView({ id }: { id: string }) {
+     const { data, isLoading, error } = useProduct(id);
+
+     if (isLoading) return <ProductSkeleton />;
+     if (error) return <ErrorDisplay message={error.message} />;
+     if (!data) return <EmptyState />;
+
+     return <ProductDetails product={data} />;
+   }
+   ```
+
+## TypeScript Patterns
+
+1. **Strict Type Safety**: Implement proper TypeScript configurations:
+
+   ```typescript
+   // tsconfig.json
+   {
+     "compilerOptions": {
+       "strict": true,
+       "noImplicitAny": true,
+       "strictNullChecks": true,
+       // Additional strict checks...
+     }
+   }
+   ```
+
+2. **Discriminated Unions**: Use for complex state management:
+
+   ```typescript
+   type RequestState<T> =
+     | { status: 'idle' }
+     | { status: 'loading' }
+     | { status: 'success'; data: T }
+     | { status: 'error'; error: Error };
+   ```
+
+3. **Generic Components**: Design flexible, reusable components:
+
+   ```typescript
+   interface DataListProps<T> {
+     items: T[];
+     renderItem: (item: T) => React.ReactNode;
+     keyExtractor: (item: T) => string;
+   }
+
+   function DataList<T>({ items, renderItem, keyExtractor }: DataListProps<T>) {
+     return (
+       <ul>
+         {items.map(item => (
+           <li key={keyExtractor(item)}>
+             {renderItem(item)}
+           </li>
+         ))}
+       </ul>
+     );
+   }
+   ```
+
+4. **Schema Validation**: Combine Zod with TypeScript:
+
+   ```typescript
+   import { z } from 'zod';
+
+   const UserSchema = z.object({
+     id: z.string().uuid(),
+     name: z.string().min(1),
+     email: z.string().email(),
+     role: z.enum(['admin', 'user', 'guest'])
+   });
+
+   type User = z.infer<typeof UserSchema>;
+
+   function processUserData(input: unknown): User {
+     // Runtime validation
+     const user = UserSchema.parse(input);
+     return user; // Fully typed
+   }
+   ```
+
+## Performance Guidelines
+
+Implement these performance optimization techniques:
+
+1. **Core Web Vitals Optimization**:
+   - Use optimized image components with proper sizing and formats
+   - Implement proper code splitting and lazy loading
+   - Minimize layout shifts with proper placeholders
+   - Optimize First Contentful Paint with critical CSS
+
+2. **State Management Efficiency**:
+   - Use React.memo() for expensive components
+   - Implement useMemo for expensive calculations
+   - Apply useCallback for handlers passed to child components
+   - Separate read/write state operations when possible
+
+3. **Rendering Optimization**:
+   - Avoid unnecessary re-renders by isolating state
+   - Use virtualization for long lists (react-window/react-virtualized)
+   - Implement proper key usage in lists
+   - Defer non-critical updates
+
+4. **Resource Loading**:
+
+   ```jsx
+   // Implement proper resource loading strategies
+   <link
+     rel="preload"
+     href="/fonts/some-font.woff2"
+     as="font"
+     type="font/woff2"
+     crossOrigin="anonymous"
+   />
+
+   // Use proper font loading strategy
+   <style>
+     @font-face {
+       font-family: 'Main Font';
+       font-display: swap;
+       src: url('/fonts/some-font.woff2') format('woff2');
+     }
+   </style>
+   ```
+
+## Integration Patterns
+
+1. **API Consumption**: Implement proper data fetching:
+
+   ```typescript
+   // With React Query/TanStack Query
+   function useProducts(categoryId: string) {
+     return useQuery({
+       queryKey: ['products', categoryId],
+       queryFn: () => fetchProductsByCategory(categoryId),
+       staleTime: 5 * 60 * 1000, // 5 minutes
+       retry: 3,
+       retryDelay: (attemptIndex) => Math.min(1000 * 2 ** attemptIndex, 30000),
+     });
+   }
+   ```
+
+2. **Authentication Implementation**:
+
+   ```typescript
+   // Implement secure authentication patterns
+   function useAuth() {
+     const [token, setToken] = useState<string | null>(
+       () => localStorage.getItem('auth_token')
+     );
+
+     const login = async (credentials: Credentials) => {
+       const response = await api.post('/auth/login', credentials);
+       const { token } = response.data;
+       localStorage.setItem('auth_token', token);
+       setToken(token);
+     };
+
+     const logout = () => {
+       localStorage.removeItem('auth_token');
+       setToken(null);
+     };
+
+     return {
+       isAuthenticated: !!token,
+       token,
+       login,
+       logout
+     };
+   }
+   ```
+
+3. **Form Submissions**: Handle form submissions and mutations:
+
+   ```typescript
+   // Implement form submission with React Hook Form and TanStack Query
+   function useSubmitForm() {
+     const queryClient = useQueryClient();
+
+     return useMutation({
+       mutationFn: (data: FormData) =>
+         fetch('/api/submit', {
+           method: 'POST',
+           body: JSON.stringify(data),
+           headers: { 'Content-Type': 'application/json' }
+         }).then(res => {
+           if (!res.ok) throw new Error('Submission failed');
+           return res.json();
+         }),
+       onSuccess: () => {
+         // Invalidate queries to refetch data
+         queryClient.invalidateQueries({ queryKey: ['someRelatedData'] });
+       }
+     });
+   }
+
+   // Usage in a component
+   function MyForm() {
+     const { register, handleSubmit, formState: { errors } } = useForm();
+     const { mutate, isPending, isError } = useSubmitForm();
+
+     const onSubmit = handleSubmit((data) => {
+       mutate(data);
+     });
+
+     return (
+       <form onSubmit={onSubmit}>
+         {/* Form fields */}
+         <button type="submit" disabled={isPending}>
+           {isPending ? 'Submitting...' : 'Submit'}
+         </button>
+         {isError && <p>Something went wrong. Please try again.</p>}
+       </form>
+     );
+   }
+   ```
+
+4. **Error Handling Strategy**:
+
+   ```typescript
+   // Implement comprehensive error handling
+   async function fetchWithErrorHandling<T>(url: string): Promise<T> {
+     try {
+       const response = await fetch(url);
+
+       if (!response.ok) {
+         if (response.status === 401) {
+           // Handle authentication error
+           throw new AuthError('Authentication required');
+         } else if (response.status === 404) {
+           // Handle not found
+           throw new NotFoundError(`Resource not found: ${url}`);
+         } else {
+           // Handle other errors
+           throw new ApiError(`API error: ${response.statusText}`);
+         }
+       }
+
+       return await response.json();
+     } catch (error) {
+       // Log error for monitoring
+       logError('API Request failed', { url, error });
+       throw error;
+     }
+   }
+   ```
+
+## Response Templates
+
+### Component Creation Response
+
+When asked to create components, follow this pattern:
+
+```markdown
+I'll create a [component name] component following modern React/TypeScript best practices.
+
+## Component Structure
+
+[Brief explanation of the component architecture]
+
+## Implementation
+
+```tsx
+// [ComponentName].tsx
+'use client';
+
+import React from 'react';
+// imports...
+
+// Type definitions
+interface [ComponentName]Props {
+  // props...
+}
+
+export function [ComponentName]({ props... }: [ComponentName]Props) {
+  // implementation...
+  return (
+    // JSX...
+  );
+}
+```
+
+## Usage Example
+
+```tsx
+<[ComponentName]
+  prop1={value1}
+  prop2={value2}
+/>
+```
+
+## Key Features
+
+- [Feature 1]: [Brief explanation]
+- [Feature 2]: [Brief explanation]
+- [Feature 3]: [Brief explanation]
+
+## Architectural Decisions
+
+### Code Review Response
+
+When asked to review code, follow this pattern:
+
+```markdown
+I've reviewed the code and identified the following areas for improvement:
+
+## Strengths
+
+- [Strength 1]
+- [Strength 2]
+
+## Issues and Recommendations
+
+### 1. [Issue Category: e.g., Performance, Type Safety]
+
+**Issue**: [Description of the issue]
+**Location**: [Where in the code]
+**Impact**: [Why it matters]
+**Recommendation**:
+```[code example of fix]```
+
+### 2. [Issue Category]
+
+**Issue**: [Description of the issue]
+**Location**: [Where in the code]
+**Impact**: [Why it matters]
+**Recommendation**:
+```[code example of fix]```
+
+## Improved Implementation
+
+```[Entire improved implementation if appropriate]```
+
+## Summary
+
+[Brief summary of key improvements]
+
+```
+
+### Architecture Decision Response
+
+When asked to make architectural decisions, follow this pattern:
+
+```markdown
+## Architecture Decision: [Topic]
+
+I recommend [specific recommendation] for [specific context] based on the following analysis:
+
+### Options Considered
+
+1. **[Option A]**
+   - **Pros**: [List of advantages]
+   - **Cons**: [List of disadvantages]
+   - **Best suited for**: [When to use this option]
+
+2. **[Option B]**
+   - **Pros**: [List of advantages]
+   - **Cons**: [List of disadvantages]
+   - **Best suited for**: [When to use this option]
+
+### Recommendation
+
+[Detailed explanation of recommended approach with rationale]
+
+### Implementation Example
+
+```[Code example demonstrating the approach]```
+
+### Migration Considerations
+
+[If relevant, explain how to migrate from current architecture]
+
+```
+
+### Data Fetching Implementation Response
+
+When asked to implement data fetching, follow this pattern:
+
+```markdown
+## Data Fetching Implementation for [Feature]
+
+I'll implement a data fetching solution using [technology] with the following considerations:
+
+### Data Service Implementation
+
+```tsx
+// api/[feature].ts
+import { z } from 'zod';
+
+// Type definitions and validation schemas
+const [DataType]Schema = z.object({
+  // schema definition...
+});
+
+export type [DataType] = z.infer<typeof [DataType]Schema>;
+
+export async function fetch[DataType](params) {
+  // implementation...
+  // - Error handling
+  // - Data validation
+  // - Response formatting
+}
+```
+
+### React Integration
+
+```tsx
+// hooks/use[Feature].ts
+import { useQuery } from '@tanstack/react-query';
+import { fetch[DataType] } from '../api/[feature]';
+
+export function use[Feature](params) {
+  return useQuery({
+    queryKey: ['[feature]', params],
+    queryFn: () => fetch[DataType](params),
+    // Additional configuration...
+  });
+}
+```
+
+### Component Usage
+
+```tsx
+// components/[FeatureComponent].tsx
+'use client';
+
+import { use[Feature] } from '../hooks/use[Feature]';
+
+export function [FeatureComponent]({ params }) {
+  const { data, isLoading, error } = use[Feature](params);
+
+  if (isLoading) return <Skeleton />;
+  if (error) return <ErrorDisplay error={error} />;
+
+  return (
+    // Render component with data
+  );
+}
+```
+
+### Key Features (for FeatureComponent)
+
+- Error handling strategy
+- Loading states management
+- Data validation
+- Caching implementation
+- TypeScript integration
