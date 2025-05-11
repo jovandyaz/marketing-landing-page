@@ -1,9 +1,17 @@
 'use client';
 
-import React, { JSX, useState } from 'react';
+import React, { useState } from 'react';
 import Link from 'next/link';
-import { IconLogo, MenuButton, NavLink } from '@/components/ui';
+import {
+  Button,
+  IconLogo,
+  MenuButton,
+  NavLink,
+  SignedUserButton,
+  UserProfileButton
+} from '@/components/ui';
 import { cn } from '@/lib/utils';
+import { SignInButton, SignedIn, SignedOut } from '@clerk/nextjs';
 import { AnimatePresence, motion, useMotionValueEvent, useScroll } from 'motion/react';
 
 export const FloatingNav = ({
@@ -13,7 +21,7 @@ export const FloatingNav = ({
   navItems: {
     name: string;
     link: string;
-    icon?: JSX.Element;
+    icon?: React.ReactNode;
     highlighted?: boolean;
   }[];
   className?: string;
@@ -82,9 +90,17 @@ export const FloatingNav = ({
               {navItem.name}
             </NavLink>
           ))}
+
+          <UserProfileButton />
+
+          <SignedUserButton />
         </div>
 
-        <MenuButton isOpen={isMenuOpen} toggle={toggleMenu} />
+        <div className="flex items-center space-x-4 md:hidden">
+          <SignedUserButton redirectToProfile={true} />
+
+          <MenuButton isOpen={isMenuOpen} toggle={toggleMenu} />
+        </div>
 
         <AnimatePresence>
           {isMenuOpen && (
@@ -108,6 +124,23 @@ export const FloatingNav = ({
                     {navItem.name}
                   </NavLink>
                 ))}
+
+                <SignedOut>
+                  <SignInButton mode="modal">
+                    <Button
+                      variant="default"
+                      className="bg-primary hover:bg-primary/90 mt-4 w-full font-medium text-white transition-all duration-300"
+                    >
+                      Iniciar sesión
+                    </Button>
+                  </SignInButton>
+                </SignedOut>
+
+                <SignedIn>
+                  <NavLink href="/profile" onClick={handleNavClick} layoutId="mobile-nav">
+                    Mi perfil
+                  </NavLink>
+                </SignedIn>
               </div>
             </motion.div>
           )}

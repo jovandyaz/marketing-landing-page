@@ -8,10 +8,21 @@ interface IconLogoProps {
   className?: string;
 }
 
-// TODO: Refactor to use svg instead of Image
+//TODO: Improve this component...
 export const IconLogo = ({ src, alt, width = 40, height = 40, className = '' }: IconLogoProps) => {
+  const isSvg = src.endsWith('.svg');
+
+  if (isSvg) {
+    return (
+      <div className="relative">
+        {/* eslint-disable-next-line @next/next/no-img-element */}
+        <img src={src} alt={alt} width={width} height={height} className={className} />
+      </div>
+    );
+  }
+
   return (
-    <div className="relative">
+    <div className="relative inline-block">
       <Image
         src={src}
         alt={alt}

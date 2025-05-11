@@ -1,6 +1,3 @@
-export * from './aceternity/floating-dock';
-export * from './aceternity/floating-navbar';
-export * from './aceternity/images-slider';
 export * from './button';
 export * from './MenuButton';
 export * from './NavLink';
@@ -15,3 +12,6 @@ export * from './input';
 export * from './select';
 export * from './SocialLink';
 export * from './badge';
+
+export * from './aceternity';
+export * from './auth';

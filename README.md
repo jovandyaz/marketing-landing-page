@@ -1,36 +1,57 @@
-This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
+# Sinergia Marketing Landing Page
 
-## Getting Started
+A professional website built with Next.js for digital marketing and community management services.
 
-First, run the development server:
+## Features
+
+- **Responsive Design**: Optimized experience on mobile and desktop devices
+- **Fluid Animations**: Elegant transitions with the Motion library
+- **Contact Form**: Integration with Resend for email delivery
+- **Authentication**: Clerk integration for user management
+- **Analytics**: Metrics tracking with Vercel Analytics
+
+## Services Offered
+
+- Training Workshops
+- Social Media
+- Community Management
+- Personalized Consulting
+
+## Technologies
+
+- **Framework**: Next.js 15 with App Router
+- **Language**: TypeScript
+- **Styling**: Tailwind CSS v4
+- **Components**: Radix UI with Shadcn UI
+- **Forms**: React Hook Form with Zod validation
+- **Email**: React Email and Resend
+
+## Local Development
 
 ```bash
+# Install dependencies
+npm install
+# or
+pnpm install
+
+# Start development server
 npm run dev
 # or
-yarn dev
-# or
 pnpm dev
-# or
-bun dev
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+Open [http://localhost:3000](http://localhost:3000) in your browser to see the result.
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+## Project Structure
 
-This project uses [`next/font`](https://nextjs.org/docs/basic-features/font-optimization) to automatically optimize and load Inter, a custom Google Font.
+- `src/app/*`: Application pages and routes
+- `src/components/*`: Reusable components
+- `src/lib/*`: Utilities and constants
+- `src/providers/*`: Context providers
+- `public/*`: Static assets
 
-## Learn More
+## Deployment
 
-To learn more about Next.js, take a look at the following resources:
+The project is optimized for deployment on Vercel.
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
-
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js/) - your feedback and contributions are welcome!
-
-## Deploy on Vercel
-
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/deployment) for more details.
+[![Deploy with Vercel](https://vercel.com/button)](https://vercel.com/new/clone?repository-url=https%3A%2F%2Fgithub.com%2Fyourname%2Fmarketing-landing-page)
