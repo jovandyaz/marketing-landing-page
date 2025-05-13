@@ -1,5 +1,5 @@
 import Image from 'next/image';
-import { BlobAnimation, FadeContainer, FadeDiv, FadeSpan, Typewriter } from '../ui';
+import { BlobAnimation, FadeContainer, FadeDiv, FadeSpan, Typewriter } from '@/components';
 
 export const Hero = () => {
   return (
