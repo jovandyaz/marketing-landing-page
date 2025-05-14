@@ -8,14 +8,17 @@ const buttonVariants = cva(
   {
     variants: {
       variant: {
-        default: 'bg-primary text-primary-foreground shadow-xs hover:bg-primary/90',
+        default:
+          'bg-gradient-to-r from-primary-500 to-primary-600 text-primary-foreground shadow-xs hover:from-primary-600 hover:to-primary-700',
         destructive:
-          'bg-destructive text-white shadow-xs hover:bg-destructive/90 focus-visible:ring-destructive/20 dark:focus-visible:ring-destructive/40 dark:bg-destructive/60',
+          'bg-gradient-to-r from-destructive-500 to-destructive-600 text-white shadow-xs hover:from-destructive-600 hover:to-destructive-700 focus-visible:ring-destructive-300 dark:focus-visible:ring-destructive-800 dark:from-destructive-600 dark:to-destructive-700',
         outline:
-          'border bg-background shadow-xs hover:bg-accent hover:text-accent-foreground dark:bg-input/30 dark:border-input dark:hover:bg-input/50',
-        secondary: 'bg-secondary text-secondary-foreground shadow-xs hover:bg-secondary/80',
-        ghost: 'hover:bg-accent hover:text-accent-foreground dark:hover:bg-accent/50',
-        link: 'text-primary underline-offset-4 hover:underline'
+          'border bg-gradient-to-r from-background to-background/95 shadow-xs hover:from-accent-100 hover:to-accent-200 hover:text-accent-foreground dark:from-gray-700 dark:to-gray-800 dark:border-gray-600 dark:hover:from-gray-600 dark:hover:to-gray-700',
+        secondary:
+          'bg-gradient-to-r from-secondary-500 to-secondary-600 text-secondary-foreground shadow-xs hover:from-secondary-600 hover:to-secondary-700',
+        ghost:
+          'bg-gradient-to-r from-transparent to-transparent hover:from-accent-100 hover:to-accent-200 hover:text-accent-foreground dark:hover:from-gray-700 dark:hover:to-gray-800',
+        link: 'bg-gradient-to-r from-transparent to-transparent text-primary underline-offset-4 hover:underline'
       },
       size: {
         default: 'h-9 px-4 py-2 has-[>svg]:px-3',

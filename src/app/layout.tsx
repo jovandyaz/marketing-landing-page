@@ -28,7 +28,9 @@ export default function RootLayout({
           <header className="w-full">
             <Navbar />
           </header>
-          <main className="w-full flex-grow pt-16 md:pt-20">{children}</main>
+          <main className="relative w-full flex-grow overflow-hidden pt-16 md:pt-20">
+            {children}
+          </main>
           <Footer />
         </AppProviders>
       </body>

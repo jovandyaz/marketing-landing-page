@@ -2,7 +2,7 @@
 
 import React from 'react';
 import Image from 'next/image';
-import { Service, ServiceCard } from '@/components';
+import { ScrollReveal, Service, ServiceCard } from '@/components';
 import { FadeContainer, FadeDiv, FadeSpan } from '@/components/ui';
 import { Badge } from '@/components/ui/badge';
 import { ArrowRightIcon, BookOpenIcon, PhoneIcon, Share2Icon, UsersIcon } from 'lucide-react';
@@ -79,89 +79,93 @@ export default function ServicesPage() {
         </FadeContainer>
       </section>
 
-      <section className="w-full py-12 md:py-24">
-        <div className="container mx-auto px-4 md:px-8">
-          <div className="flex flex-col gap-16 md:flex-row md:items-center">
-            <FadeDiv className="relative aspect-square overflow-hidden rounded-xl shadow-lg md:aspect-video md:w-2/3">
-              <Image
-                alt="Mujer posando en el campo"
-                src="/images/photo_home_1.webp"
-                fill
-                sizes="(max-width: 768px) 100vw, 66vw"
-                className="object-cover object-center"
-              />
-            </FadeDiv>
-            <div className="px-4 md:w-1/3">
-              <motion.div
-                initial={{ opacity: 0, x: -20 }}
-                animate={{ opacity: 1, x: 0 }}
-                transition={{ duration: 0.7 }}
-              >
-                <div className="relative mb-4">
-                  <div className="absolute top-0 -left-4 h-full w-1 bg-yellow-400"></div>
-                  <h2 className="text-3xl font-bold tracking-tight text-gray-900">
-                    Mi experiencia, <br />
-                    <span className="text-secondary-600">tu mejor aliado</span>
-                  </h2>
-                </div>
-                <p className="mb-6 text-lg text-gray-700">
-                  Como experta en marketing digital, mi pasión es entender las necesidades únicas de
-                  cada cliente para diseñar estrategias efectivas que transformen la visibilidad en
-                  resultados concretos para tu negocio.
-                </p>
-                <motion.div
-                  initial={{ opacity: 0, y: 10 }}
-                  animate={{ opacity: 1, y: 0 }}
-                  transition={{ duration: 0.5, delay: 0.3 }}
-                  className="flex flex-wrap gap-3"
-                >
-                  <Badge className="bg-yellow-100 px-3 py-1.5 text-sm text-yellow-800">
-                    +7 años de experiencia
-                  </Badge>
-                  <Badge className="bg-blue-100 px-3 py-1.5 text-sm text-blue-800">
-                    Resultados garantizados
-                  </Badge>
-                </motion.div>
+      <ScrollReveal variant="fade-up" delay={0.3} duration={0.9}>
+        <section className="w-full py-12 md:py-24">
+          <div className="container mx-auto px-4 md:px-8">
+            <div className="flex flex-col gap-16 md:flex-row md:items-center">
+              <motion.div className="relative aspect-square overflow-hidden rounded-xl shadow-lg md:aspect-video md:w-2/3">
+                <Image
+                  alt="Mujer posando en el campo"
+                  src="/images/photo_home_1.webp"
+                  fill
+                  sizes="(max-width: 768px) 100vw, 66vw"
+                  className="object-cover object-center"
+                />
               </motion.div>
+              <div className="px-4 md:w-1/3">
+                <motion.div
+                  initial={{ opacity: 0, x: -20 }}
+                  animate={{ opacity: 1, x: 0 }}
+                  transition={{ duration: 0.7 }}
+                >
+                  <div className="relative mb-4">
+                    <div className="absolute top-0 -left-4 h-full w-1 bg-yellow-400"></div>
+                    <h2 className="text-3xl font-bold tracking-tight text-gray-900">
+                      Mi experiencia, <br />
+                      <span className="text-secondary-600">tu mejor aliado</span>
+                    </h2>
+                  </div>
+                  <p className="mb-6 text-lg text-gray-700">
+                    Como experta en marketing digital, mi pasión es entender las necesidades únicas
+                    de cada cliente para diseñar estrategias efectivas que transformen la
+                    visibilidad en resultados concretos para tu negocio.
+                  </p>
+                  <motion.div
+                    initial={{ opacity: 0, y: 10 }}
+                    animate={{ opacity: 1, y: 0 }}
+                    transition={{ duration: 0.5, delay: 0.3 }}
+                    className="flex flex-wrap gap-3"
+                  >
+                    <Badge className="bg-yellow-100 px-3 py-1.5 text-sm text-yellow-800">
+                      +7 años de experiencia
+                    </Badge>
+                    <Badge className="bg-blue-100 px-3 py-1.5 text-sm text-blue-800">
+                      Resultados garantizados
+                    </Badge>
+                  </motion.div>
+                </motion.div>
+              </div>
             </div>
           </div>
-        </div>
-      </section>
+        </section>
+      </ScrollReveal>
 
-      <section id="services" className="flex min-h-screen w-full items-center py-4">
-        <div className="container mx-auto px-4 md:px-8">
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.7 }}
-            className="mb-8 hidden text-center md:block"
-          >
-            <h2 className="relative mb-2 text-2xl font-bold text-gray-900 md:text-3xl">
-              Servicios{' '}
-              <span className="relative">
-                destacados
-                <div className="absolute -bottom-1 left-0 h-1 w-full bg-yellow-400"></div>
-              </span>
-            </h2>
-            <p className="mx-auto mt-4 max-w-2xl text-gray-600">
-              Diseñados para impulsar tu marca al siguiente nivel
-            </p>
-          </motion.div>
+      <ScrollReveal variant="fade-up" delay={0.3} duration={0.9}>
+        <section id="services" className="flex min-h-screen w-full items-center py-4">
+          <div className="container mx-auto px-4 md:px-8">
+            <motion.div
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.7 }}
+              className="mb-8 hidden text-center md:block"
+            >
+              <h2 className="relative mb-2 text-2xl font-bold text-gray-900 md:text-3xl">
+                Servicios{' '}
+                <span className="relative">
+                  destacados
+                  <div className="absolute -bottom-1 left-0 h-1 w-full bg-yellow-400"></div>
+                </span>
+              </h2>
+              <p className="mx-auto mt-4 max-w-2xl text-gray-600">
+                Diseñados para impulsar tu marca al siguiente nivel
+              </p>
+            </motion.div>
 
-          <div className="grid grid-cols-1 gap-6 md:grid-cols-2 lg:grid-cols-4">
-            {services.map((service, index) => (
-              <motion.div
-                key={service.id}
-                initial={{ opacity: 0, y: 20 }}
-                animate={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.5, delay: index * 0.1 }}
-              >
-                <ServiceCard service={service} />
-              </motion.div>
-            ))}
+            <div className="grid grid-cols-1 gap-6 md:grid-cols-4">
+              {services.map((service, index) => (
+                <motion.div
+                  key={service.id}
+                  initial={{ opacity: 0, y: 20 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  transition={{ duration: 0.5, delay: index * 0.1 }}
+                >
+                  <ServiceCard service={service} />
+                </motion.div>
+              ))}
+            </div>
           </div>
-        </div>
-      </section>
+        </section>
+      </ScrollReveal>
     </div>
   );
 }
