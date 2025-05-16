@@ -1,11 +1,9 @@
 'use client';
 
 import React from 'react';
-import Image from 'next/image';
 import Link from 'next/link';
-import { Badge } from '../ui/badge';
 import { highlightedWords, profesionalDescription } from './texts';
-import { Card, CardContent } from '@/components/ui/card';
+import { Badge, CuteCard, CuteCardContent, Image3DEffect } from '@/components';
 import { motion } from 'motion/react';
 
 export function highlightText(text: string, highlightedWords: string[]) {
@@ -24,8 +22,8 @@ export const About = () => {
   return (
     <section id="about" className="w-full">
       <div className="container mx-auto mb-24 w-full px-4 md:px-8">
-        <Card className="via-primary-50/50 dark:via-primary-950/30 relative w-full overflow-hidden rounded-2xl border-0 bg-gradient-to-br from-slate-50 to-neutral-50 shadow-lg backdrop-blur-sm dark:from-gray-900 dark:to-gray-950">
-          <CardContent className="relative z-10 flex w-full flex-col items-center p-8 text-justify md:p-10">
+        <CuteCard variant="light">
+          <CuteCardContent className="text-justify">
             <div className="relative mb-8">
               <div className="from-secondary-400 to-secondary-600 absolute top-0 -left-4 h-full w-1 rounded-full bg-gradient-to-b"></div>
               <motion.div
@@ -60,8 +58,6 @@ export const About = () => {
               animate={{ opacity: 1, scale: 1 }}
               transition={{ duration: 0.6, delay: 0.8 }}
               className="mt-8 flex flex-wrap items-center justify-center gap-4"
-              whileHover={{ scale: 1.03 }}
-              whileTap={{ scale: 0.98 }}
             >
               <Badge
                 variant="secondary"
@@ -82,8 +78,8 @@ export const About = () => {
                 #MarketingDigital
               </Badge>
             </motion.div>
-          </CardContent>
-        </Card>
+          </CuteCardContent>
+        </CuteCard>
       </div>
       <div className="container mx-auto w-full px-4 py-14 md:px-8">
         <div className="mx-auto grid max-w-none grid-cols-1 items-center gap-12 md:grid-cols-2">
@@ -91,22 +87,14 @@ export const About = () => {
             initial={{ opacity: 0, x: -50 }}
             animate={{ opacity: 1, x: 0 }}
             transition={{ duration: 0.7 }}
-            className="group relative h-[400px] w-full md:h-[550px]"
+            className="group relative w-full"
           >
-            <div className="absolute inset-0 overflow-hidden rounded-2xl">
-              <Image
-                src="/images/lavander.jpg"
-                alt="Enfoque creativo"
-                fill
-                className="rounded-2xl object-cover shadow-xl transition-transform duration-700 ease-out group-hover:scale-105"
-                sizes="(max-width: 768px) 90vw, 45vw"
-              />
-              <div className="from-primary-500/30 absolute inset-0 rounded-2xl bg-gradient-to-tr to-transparent opacity-60 mix-blend-overlay"></div>
-              <motion.div
-                className="absolute inset-0 rounded-2xl bg-gradient-to-t from-purple-500/40 to-transparent opacity-0 transition-opacity duration-500 group-hover:opacity-60"
-                whileHover={{ opacity: 0.6 }}
-              ></motion.div>
-            </div>
+            <Image3DEffect
+              src="/images/lavander.jpg"
+              alt="Enfoque creativo"
+              sizes="(max-width: 768px) 90vw, 45vw"
+              aspectRatio="aspect-square"
+            />
           </motion.div>
 
           <motion.div

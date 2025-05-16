@@ -1,7 +1,6 @@
 import React from 'react';
 import { useCallback } from 'react';
-import { Badge, Button } from '@/components/ui';
-import { Card, CardContent, CardFooter } from '@/components/ui/card';
+import { Badge, Button, Card, CardContent, CardFooter } from '@/components';
 import { SINERGIA_WHATSAPP_URL } from '@/lib/constants';
 import { ArrowRightIcon } from 'lucide-react';
 import { motion } from 'motion/react';
@@ -29,7 +28,7 @@ export const ServiceCard = ({ service }: { service: Service }) => {
       className="h-full"
     >
       <Card
-        className={`flex h-full flex-col overflow-hidden transition-all duration-300 hover:shadow-lg ${service.popular ? 'border-2 border-yellow-400' : ''}`}
+        className={`relative flex h-full flex-col overflow-hidden transition-all duration-300 hover:shadow-lg ${service.popular ? 'border-2 border-yellow-400' : ''}`}
       >
         <CardContent className="flex-grow p-6 md:p-8">
           <div
@@ -51,16 +50,26 @@ export const ServiceCard = ({ service }: { service: Service }) => {
             </div>
             <p className="text-gray-600">{service.description}</p>
           </div>
-          <div className="mt-6 flex flex-wrap gap-2">
-            {service.badges.map(badge => (
-              <span
-                key={badge}
-                className={`rounded-full ${service.color} px-3 py-1 text-xs font-medium`}
-              >
-                #{badge}
-              </span>
-            ))}
-          </div>
+          <motion.div
+            initial={{ opacity: 0, scale: 0.95 }}
+            animate={{ opacity: 1, scale: 1 }}
+            transition={{ duration: 0.6, delay: 0.3 }}
+            className="relative z-10 mt-6 flex flex-wrap gap-2"
+          >
+            {service.badges.map(badge => {
+              const colorBase = service.color.match(/bg-([a-z]+)-\d+/)?.[1] || 'gray';
+
+              return (
+                <Badge
+                  key={badge}
+                  variant="secondary"
+                  className={`bg-${colorBase}-100 hover:bg-${colorBase}-200 dark:bg-${colorBase}-900 dark:hover:bg-${colorBase}-800 text-${colorBase}-800 dark:text-${colorBase}-300 rounded-full px-4 py-2 text-sm transition-colors`}
+                >
+                  #{badge}
+                </Badge>
+              );
+            })}
+          </motion.div>
         </CardContent>
         <CardFooter className="mt-auto flex justify-center p-1">
           <Button className="cursor-pointer" onClick={handleOnClick}>

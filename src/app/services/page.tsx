@@ -1,10 +1,17 @@
 'use client';
 
 import React from 'react';
-import Image from 'next/image';
-import { ScrollReveal, Service, ServiceCard } from '@/components';
-import { FadeContainer, FadeDiv, FadeSpan } from '@/components/ui';
-import { Badge } from '@/components/ui/badge';
+import {
+  Badge,
+  FadeContainer,
+  FadeDiv,
+  FadeSpan,
+  Image3DEffect,
+  ScrollReveal,
+  Service,
+  ServiceCard,
+  SubtleBlobAnimation
+} from '@/components';
 import { ArrowRightIcon, BookOpenIcon, PhoneIcon, Share2Icon, UsersIcon } from 'lucide-react';
 import { motion } from 'motion/react';
 
@@ -13,20 +20,11 @@ const services: Service[] = [
     id: 'workshops',
     title: 'Talleres Formativos',
     description:
-      'Descubre el potencial de Canva para crear diseños profesionales que eleven la imagen de tu marca, entre otros más.',
+      'Aprende a monetizar tus redes sociales, domina Canva para crear diseños profesionales, desarrolla pilares de contenido efectivos y descubre estrategias digitales avanzadas para potenciar tu marca.',
     icon: <BookOpenIcon className="h-6 w-6" />,
     color: 'bg-yellow-100',
     badges: ['Presencial', 'Online', 'Canva'],
     popular: true
-  },
-  {
-    id: 'social-media',
-    title: 'Social Media',
-    description:
-      'Creo y gestiono contenido impactante para tus redes sociales que conecta con tu audiencia y convierte seguidores en clientes.',
-    icon: <Share2Icon className="h-6 w-6" />,
-    color: 'bg-purple-100',
-    badges: ['Estrategia', 'Contenido']
   },
   {
     id: 'community',
@@ -44,52 +42,63 @@ const services: Service[] = [
       'Ofrezco consultoría estratégica adaptada a las necesidades específicas de tu marca para maximizar resultados y optimizar recursos.',
     icon: <PhoneIcon className="h-6 w-6" />,
     color: 'bg-green-100',
-    badges: ['1:1', 'Seguimiento']
+    badges: ['1:1', 'Seguimiento', 'Socias']
+  },
+  {
+    id: 'social-media',
+    title: 'Social Media',
+    description:
+      'Desarrollo tu identidad de marca completa: manual corporativo, logotipo, colorimetría y diseño de empaques, junto con plantillas de contenido impactante que atraen a tu audiencia ideal.',
+    icon: <Share2Icon className="h-6 w-6" />,
+    color: 'bg-purple-100',
+    badges: ['Estrategia', 'Contenido']
   }
 ];
 
 export default function ServicesPage() {
   return (
     <div className="flex min-h-screen flex-col items-center justify-between pt-8 pb-16">
-      <section className="flex w-full items-center justify-center md:h-screen">
-        <FadeContainer className="container mx-auto px-4 md:px-8">
-          <div className="mx-auto max-w-3xl text-center">
-            <h1 className="mb-4 text-3xl font-bold tracking-tight text-gray-900 md:text-5xl">
-              <FadeSpan className="block">
-                Soluciones de <span className="text-secondary-600">marketing</span> para
-              </FadeSpan>
-              <FadeSpan className="block">hacer crecer tu negocio</FadeSpan>
-            </h1>
-            <FadeDiv className="mx-auto mt-6 max-w-2xl">
-              <p className="text-lg text-gray-700">
-                Estrategias personalizadas para potenciar tu presencia digital, conectar con tu
-                audiencia y convertir tus seguidores en clientes leales.
-              </p>
-            </FadeDiv>
-            <FadeDiv className="mt-12 hidden md:block">
-              <a
-                href="#services"
-                className="bg-secondary-600 inline-flex items-center gap-2 rounded-lg px-6 py-3 text-white transition-transform hover:scale-105"
-              >
-                Ver servicios
-                <ArrowRightIcon className="h-4 w-4" />
-              </a>
-            </FadeDiv>
-          </div>
-        </FadeContainer>
+      <section className="relative flex w-full items-center justify-center md:h-screen">
+        <SubtleBlobAnimation>
+          <FadeContainer className="container mx-auto px-4 md:px-8">
+            <div className="mx-auto max-w-3xl text-center">
+              <h1 className="mb-4 text-3xl font-bold tracking-tight text-gray-900 md:text-5xl">
+                <FadeSpan className="block">
+                  Soluciones de <span className="text-secondary-600">marketing</span> para
+                </FadeSpan>
+                <FadeSpan className="block">hacer crecer tu negocio</FadeSpan>
+              </h1>
+              <FadeDiv className="mx-auto mt-6 max-w-2xl">
+                <p className="text-lg text-gray-700">
+                  Estrategias personalizadas para potenciar tu presencia digital, conectar con tu
+                  audiencia y convertir tus seguidores en clientes leales.
+                </p>
+              </FadeDiv>
+              <FadeDiv className="mt-12 hidden md:block">
+                <a
+                  href="#services"
+                  className="bg-secondary-600 inline-flex items-center gap-2 rounded-lg px-6 py-3 text-white transition-transform hover:scale-105"
+                >
+                  Ver servicios
+                  <ArrowRightIcon className="h-4 w-4" />
+                </a>
+              </FadeDiv>
+            </div>
+          </FadeContainer>
+        </SubtleBlobAnimation>
       </section>
 
       <ScrollReveal variant="fade-up" delay={0.3} duration={0.9}>
         <section className="w-full py-12 md:py-24">
           <div className="container mx-auto px-4 md:px-8">
             <div className="flex flex-col gap-16 md:flex-row md:items-center">
-              <motion.div className="relative aspect-square overflow-hidden rounded-xl shadow-lg md:aspect-video md:w-2/3">
-                <Image
+              <motion.div className="relative md:w-2/3">
+                <Image3DEffect
                   alt="Mujer posando en el campo"
                   src="/images/photo_home_1.webp"
-                  fill
                   sizes="(max-width: 768px) 100vw, 66vw"
-                  className="object-cover object-center"
+                  priority
+                  aspectRatio="aspect-[4/3] md:aspect-[16/9]"
                 />
               </motion.div>
               <div className="px-4 md:w-1/3">

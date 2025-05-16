@@ -1,5 +1,11 @@
-import Image from 'next/image';
-import { BlobAnimation, FadeContainer, FadeDiv, FadeSpan, Typewriter } from '@/components';
+import {
+  BlobAnimation,
+  FadeContainer,
+  FadeDiv,
+  FadeSpan,
+  Image3DEffect,
+  Typewriter
+} from '@/components';
 
 export const Hero = () => {
   return (
@@ -7,15 +13,15 @@ export const Hero = () => {
       aria-label="hero"
       className="relative flex min-h-screen w-full items-center justify-center overflow-hidden px-4 md:px-8"
     >
-      <FadeContainer className="mx-auto grid w-full max-w-6xl grid-cols-1 items-center gap-8 md:grid-cols-2 md:gap-24">
+      <FadeContainer className="mx-auto grid w-full max-w-6xl grid-cols-1 items-center gap-8 md:grid-cols-[1fr_1.2fr] md:gap-16">
         <FadeDiv className="order-2 space-y-4 md:order-1 md:space-y-6">
-          <h1 className="text-center text-3xl font-bold tracking-tight text-gray-900 md:text-left md:text-5xl">
+          <h1 className="text-center text-3xl font-extrabold tracking-tight [text-wrap:balance] text-gray-900 md:text-left md:text-5xl dark:text-white">
             <FadeSpan className="block">El éxito llega cuando</FadeSpan>
             <FadeSpan className="block">
               <Typewriter
                 text={['te atreves a soñar', 'das el primer paso', 'trabajamos junt@s!']}
                 speed={70}
-                className="text-secondary-600 dark:text-secondary-400"
+                className="from-secondary-600 to-primary-500 dark:from-secondary-500 dark:to-primary-300 bg-gradient-to-r bg-clip-text text-transparent"
                 waitTime={1500}
                 deleteSpeed={40}
                 cursorChar={'_'}
@@ -27,7 +33,7 @@ export const Hero = () => {
               Porque junt@s transformaremos tus ideas en realidades poderosas, llevándote hasta las
               metas que siempre has anhelado.
             </FadeSpan>
-            <FadeSpan className="text-primary-600 dark:text-primary-400 text-center text-2xl font-bold md:text-justify">
+            <FadeSpan className="text-primary-600 dark:text-primary-400 text-center text-2xl font-bold transition-transform duration-300 hover:scale-105 md:text-justify">
               ¿Lista para hacer brillar tu marca?
             </FadeSpan>
           </FadeDiv>
@@ -36,17 +42,12 @@ export const Hero = () => {
         <div className="relative order-1 flex w-full items-center justify-center md:order-2">
           <FadeDiv className="relative mx-auto w-full max-w-md">
             <BlobAnimation>
-              <div className="relative aspect-square w-full overflow-hidden rounded-2xl shadow-[0_20px_50px_rgba(8,_112,_184,_0.15)] dark:shadow-[0_20px_50px_rgba(8,_112,_184,_0.07)]">
-                <div className="from-primary-200/30 dark:from-primary-900/20 absolute inset-0 z-10 rounded-2xl bg-gradient-to-tr to-transparent dark:to-transparent"></div>
-                <Image
-                  alt="Mujer trabajando en su computadora"
-                  src="/images/photo_home.png"
-                  fill
-                  priority
-                  sizes="(max-width: 768px) 90vw, 45vw"
-                  className="object-cover object-center"
-                />
-              </div>
+              <Image3DEffect
+                src="/images/photo_home.png"
+                alt="Mujer trabajando en su computadora"
+                priority={true}
+                decorativeElements={false}
+              />
             </BlobAnimation>
           </FadeDiv>
         </div>

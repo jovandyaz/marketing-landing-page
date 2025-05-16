@@ -242,8 +242,18 @@
   .animation-delay-4000 {
     animation-delay: 4s;
   }
+  .animation-delay-3000 {
+    animation-delay: 3s;
+  }
+  .animation-delay-6000 {
+    animation-delay: 6s;
+  }
   .animate-blob {
     animation: blob 7s infinite;
+  }
+
+  .animate-blob-subtle {
+    animation: blob-subtle 12s infinite;
   }
 
   @keyframes blob {
@@ -259,6 +269,19 @@
     66% {
       transform: translate(-20px, 20px) scale(0.9);
       filter: blur(15px);
+    }
+  }
+
+  @keyframes blob-subtle {
+    0%,
+    100% {
+      transform: translate(0px, 0px) scale(1);
+    }
+    33% {
+      transform: translate(15px, -20px) scale(1.05);
+    }
+    66% {
+      transform: translate(-10px, 10px) scale(0.95);
     }
   }
 
@@ -290,6 +313,55 @@
     100% {
       transform: translateX(calc(-100% / 5));
     }
+  }
+
+  /* 3D Animation effects */
+  .animate-float {
+    animation: float 6s ease-in-out infinite;
+  }
+
+  .animate-float-slow {
+    animation: float 8s ease-in-out infinite 1s;
+  }
+
+  @keyframes float {
+    0%,
+    100% {
+      transform: translateY(0px);
+    }
+    50% {
+      transform: translateY(-20px);
+    }
+  }
+
+  /* 3D Image Effect Classes */
+  .image-3d-container {
+    perspective: 1000px;
+  }
+
+  .image-3d {
+    transform-style: preserve-3d;
+    transition: transform 0.5s ease-out;
+  }
+
+  .image-3d:hover {
+    transform: rotateY(10deg) rotateX(5deg) translateZ(30px);
+  }
+
+  .image-3d-layer {
+    transform-style: preserve-3d;
+  }
+
+  .image-3d-overlay {
+    transform: translateZ(5px);
+  }
+
+  .image-3d-shadow {
+    transform: translateZ(-5px);
+  }
+
+  .image-3d-content {
+    transform: translateZ(20px);
   }
 
   .marquee-pause:hover .animate-marquee {
