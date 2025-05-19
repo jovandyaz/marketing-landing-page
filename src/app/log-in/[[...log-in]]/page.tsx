@@ -1,5 +1,6 @@
 'use client';
 
+import { PUBLIC_ROUTES } from '@/config/routes';
 import { SignIn } from '@clerk/nextjs';
 
 export default function LogInPage() {
@@ -7,7 +8,7 @@ export default function LogInPage() {
     <div className="flex min-h-screen w-full flex-col items-center justify-center">
       <div className="w-full max-w-md">
         <SignIn
-          path="/log-in"
+          path={PUBLIC_ROUTES.LOG_IN}
           routing="path"
           appearance={{
             elements: {
