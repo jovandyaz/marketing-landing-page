@@ -1,25 +1,14 @@
-import React from 'react';
-import { useCallback } from 'react';
+import Link from 'next/link';
+import { Service } from '../Service.types';
 import { Badge, Button, Card, CardContent, CardFooter } from '@/components';
-import { SINERGIA_WHATSAPP_URL } from '@/lib/constants';
 import { ArrowRightIcon } from 'lucide-react';
 import { motion } from 'motion/react';
 
-export interface Service {
-  id: string;
-  title: string;
-  description: string;
-  icon: React.ReactNode;
-  color: string;
-  badges: string[];
-  popular?: boolean;
+interface ServiceCardProps {
+  service: Service;
 }
 
-export const ServiceCard = ({ service }: { service: Service }) => {
-  const handleOnClick = useCallback(() => {
-    window.open(SINERGIA_WHATSAPP_URL, '_blank', 'noopener,noreferrer');
-  }, []);
-
+export const ServiceCard = ({ service }: ServiceCardProps) => {
   return (
     <motion.div
       initial={{ opacity: 0, y: 20 }}
@@ -72,8 +61,10 @@ export const ServiceCard = ({ service }: { service: Service }) => {
           </motion.div>
         </CardContent>
         <CardFooter className="mt-auto flex justify-center p-1">
-          <Button className="cursor-pointer" onClick={handleOnClick}>
-            Conocer más <ArrowRightIcon className="h-4 w-4" />
+          <Button className="cursor-pointer" asChild>
+            <Link href="/services">
+              Conocer más <ArrowRightIcon className="h-4 w-4" />
+            </Link>
           </Button>
         </CardFooter>
       </Card>

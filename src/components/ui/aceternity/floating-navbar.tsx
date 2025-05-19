@@ -71,12 +71,12 @@ export const FloatingNav = ({
           duration: 0.2
         }}
         className={cn(
-          'z-5000 flex w-full items-center justify-between border-b border-gray-100 bg-white/70 p-4 backdrop-blur-md dark:border-gray-800/20 dark:bg-black/70',
+          'z-5000 flex w-full items-center justify-between border-b border-gray-100 bg-white p-4 md:bg-white/70 md:backdrop-blur-md dark:border-gray-800/20 dark:bg-black md:dark:bg-black/70',
           className
         )}
       >
         <Link href="/" className="relative z-10" onClick={handleNavClick}>
-          <IconLogo src="/logo-plain.svg" alt="Sinergia" width={120} height={40} />
+          <IconLogo src="/sinergia_logo.svg" alt="Sinergia" width={120} height={40} />
         </Link>
 
         <div className="hidden items-center space-x-8 md:flex">

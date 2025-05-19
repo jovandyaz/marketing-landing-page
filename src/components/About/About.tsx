@@ -1,7 +1,6 @@
 'use client';
 
 import React from 'react';
-import Link from 'next/link';
 import { highlightedWords, profesionalDescription } from './texts';
 import { Badge, CuteCard, CuteCardContent, Image3DEffect } from '@/components';
 import { motion } from 'motion/react';
@@ -89,12 +88,13 @@ export const About = () => {
             transition={{ duration: 0.7 }}
             className="group relative w-full"
           >
-            <Image3DEffect
-              src="/images/lavander.jpg"
-              alt="Enfoque creativo"
-              sizes="(max-width: 768px) 90vw, 45vw"
-              aspectRatio="aspect-square"
-            />
+            <div className="w-full max-w-md">
+              <Image3DEffect
+                src="/images/lavander.jpg"
+                alt="Enfoque creativo"
+                sizes="(max-width: 768px) 90vw, 45vw"
+              />
+            </div>
           </motion.div>
 
           <motion.div
@@ -127,36 +127,9 @@ export const About = () => {
               negocios que entiendan de creatividad.
             </p>
 
-            <p className="text-xl font-medium text-gray-900 dark:text-white">
+            <p className="animate-gradient mb-6 bg-gradient-to-r from-purple-400 via-purple-600 to-purple-800 bg-clip-text text-2xl font-bold tracking-wider text-transparent">
               ¡Aquí es donde soy diferente!
             </p>
-
-            <Link
-              href="/services"
-              className="group text-primary-600 dark:text-primary-400 hover:text-primary-700 dark:hover:text-primary-300 relative inline-flex items-center overflow-hidden font-medium transition-colors"
-            >
-              <span className="relative z-10">Conoce más sobre mis servicios</span>
-              <motion.span
-                className="from-primary-400 to-secondary-500 absolute bottom-0 left-0 h-[2px] bg-gradient-to-r"
-                initial={{ width: 0 }}
-                whileHover={{ width: '100%' }}
-                transition={{ duration: 0.3 }}
-              />
-              <svg
-                className="ml-2 h-5 w-5 transform transition-transform duration-300 group-hover:translate-x-1"
-                fill="none"
-                stroke="currentColor"
-                viewBox="0 0 24 24"
-                xmlns="http://www.w3.org/2000/svg"
-              >
-                <path
-                  strokeLinecap="round"
-                  strokeLinejoin="round"
-                  strokeWidth="2"
-                  d="M14 5l7 7m0 0l-7 7m7-7H3"
-                ></path>
-              </svg>
-            </Link>
           </motion.div>
         </div>
       </div>

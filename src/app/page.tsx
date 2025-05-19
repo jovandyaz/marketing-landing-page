@@ -1,10 +1,6 @@
 'use client';
 
-import { About } from '@/components/About';
-import { Contact } from '@/components/Contact';
-import { Hero } from '@/components/Hero';
-import { LogoCarousel } from '@/components/LogoCarousel';
-import { ScrollReveal } from '@/components/animation/ScrollReveal';
+import { About, CompactServices, Contact, Hero, LogoCarousel, ScrollReveal } from '@/components';
 
 export default function Home() {
   return (
@@ -13,6 +9,10 @@ export default function Home() {
 
       <ScrollReveal variant="fade-up" delay={0.3} duration={0.9}>
         <About />
+      </ScrollReveal>
+
+      <ScrollReveal variant="fade-up" delay={0.4} duration={0.9}>
+        <CompactServices />
       </ScrollReveal>
 
       <ScrollReveal variant="fade-up" delay={0.5} duration={0.9}>

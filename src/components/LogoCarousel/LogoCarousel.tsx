@@ -7,7 +7,7 @@ export const LogoCarousel = () => {
   const duplicatedBrands = [...brands, ...brands, ...brands, ...brands];
 
   return (
-    <section className="relative overflow-hidden py-24">
+    <section className="relative overflow-hidden">
       <motion.div
         initial={{ opacity: 0, y: 20 }}
         animate={{ opacity: 1, y: 0 }}

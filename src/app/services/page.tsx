@@ -1,6 +1,5 @@
 'use client';
 
-import React from 'react';
 import {
   Badge,
   FadeContainer,
@@ -8,56 +7,14 @@ import {
   FadeSpan,
   Image3DEffect,
   ScrollReveal,
-  Service,
-  ServiceCard,
+  Services,
   SubtleBlobAnimation
 } from '@/components';
-import { ArrowRightIcon, BookOpenIcon, PhoneIcon, Share2Icon, UsersIcon } from 'lucide-react';
 import { motion } from 'motion/react';
-
-const services: Service[] = [
-  {
-    id: 'workshops',
-    title: 'Talleres Formativos',
-    description:
-      'Aprende a monetizar tus redes sociales, domina Canva para crear diseños profesionales, desarrolla pilares de contenido efectivos y descubre estrategias digitales avanzadas para potenciar tu marca.',
-    icon: <BookOpenIcon className="h-6 w-6" />,
-    color: 'bg-yellow-100',
-    badges: ['Presencial', 'Online', 'Canva'],
-    popular: true
-  },
-  {
-    id: 'community',
-    title: 'Community Management',
-    description:
-      'Me especializo en la construcción y gestión de comunidades digitales que fortalecen la relación con tu audiencia y generan engagement real.',
-    icon: <UsersIcon className="h-6 w-6" />,
-    color: 'bg-blue-100',
-    badges: ['Engagement', 'Crecimiento']
-  },
-  {
-    id: 'consulting',
-    title: 'Asesoría Personalizada',
-    description:
-      'Ofrezco consultoría estratégica adaptada a las necesidades específicas de tu marca para maximizar resultados y optimizar recursos.',
-    icon: <PhoneIcon className="h-6 w-6" />,
-    color: 'bg-green-100',
-    badges: ['1:1', 'Seguimiento', 'Socias']
-  },
-  {
-    id: 'social-media',
-    title: 'Social Media',
-    description:
-      'Desarrollo tu identidad de marca completa: manual corporativo, logotipo, colorimetría y diseño de empaques, junto con plantillas de contenido impactante que atraen a tu audiencia ideal.',
-    icon: <Share2Icon className="h-6 w-6" />,
-    color: 'bg-purple-100',
-    badges: ['Estrategia', 'Contenido']
-  }
-];
 
 export default function ServicesPage() {
   return (
-    <div className="flex min-h-screen flex-col items-center justify-between pt-8 pb-16">
+    <div className="flex min-h-screen flex-col items-center justify-between pb-16">
       <section className="relative flex w-full items-center justify-center md:h-screen">
         <SubtleBlobAnimation>
           <FadeContainer className="container mx-auto px-4 md:px-8">
@@ -73,15 +30,6 @@ export default function ServicesPage() {
                   Estrategias personalizadas para potenciar tu presencia digital, conectar con tu
                   audiencia y convertir tus seguidores en clientes leales.
                 </p>
-              </FadeDiv>
-              <FadeDiv className="mt-12 hidden md:block">
-                <a
-                  href="#services"
-                  className="bg-secondary-600 inline-flex items-center gap-2 rounded-lg px-6 py-3 text-white transition-transform hover:scale-105"
-                >
-                  Ver servicios
-                  <ArrowRightIcon className="h-4 w-4" />
-                </a>
               </FadeDiv>
             </div>
           </FadeContainer>
@@ -140,40 +88,7 @@ export default function ServicesPage() {
       </ScrollReveal>
 
       <ScrollReveal variant="fade-up" delay={0.3} duration={0.9}>
-        <section id="services" className="flex min-h-screen w-full items-center py-4">
-          <div className="container mx-auto px-4 md:px-8">
-            <motion.div
-              initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.7 }}
-              className="mb-8 hidden text-center md:block"
-            >
-              <h2 className="relative mb-2 text-2xl font-bold text-gray-900 md:text-3xl">
-                Servicios{' '}
-                <span className="relative">
-                  destacados
-                  <div className="absolute -bottom-1 left-0 h-1 w-full bg-yellow-400"></div>
-                </span>
-              </h2>
-              <p className="mx-auto mt-4 max-w-2xl text-gray-600">
-                Diseñados para impulsar tu marca al siguiente nivel
-              </p>
-            </motion.div>
-
-            <div className="grid grid-cols-1 gap-6 md:grid-cols-4">
-              {services.map((service, index) => (
-                <motion.div
-                  key={service.id}
-                  initial={{ opacity: 0, y: 20 }}
-                  animate={{ opacity: 1, y: 0 }}
-                  transition={{ duration: 0.5, delay: index * 0.1 }}
-                >
-                  <ServiceCard service={service} />
-                </motion.div>
-              ))}
-            </div>
-          </div>
-        </section>
+        <Services />
       </ScrollReveal>
     </div>
   );

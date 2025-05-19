@@ -14,14 +14,14 @@ export const Hero = () => {
       className="relative flex min-h-screen w-full items-center justify-center overflow-hidden px-4 md:px-8"
     >
       <FadeContainer className="mx-auto grid w-full max-w-6xl grid-cols-1 items-center gap-8 md:grid-cols-[1fr_1.2fr] md:gap-16">
-        <FadeDiv className="order-2 space-y-4 md:order-1 md:space-y-6">
+        <FadeDiv className="order-1 space-y-4 md:space-y-6">
           <h1 className="text-center text-3xl font-extrabold tracking-tight [text-wrap:balance] text-gray-900 md:text-left md:text-5xl dark:text-white">
             <FadeSpan className="block">El éxito llega cuando</FadeSpan>
             <FadeSpan className="block">
               <Typewriter
                 text={['te atreves a soñar', 'das el primer paso', 'trabajamos junt@s!']}
                 speed={70}
-                className="from-secondary-600 to-primary-500 dark:from-secondary-500 dark:to-primary-300 bg-gradient-to-r bg-clip-text text-transparent"
+                className="text-secondary-600 dark:text-secondary-400"
                 waitTime={1500}
                 deleteSpeed={40}
                 cursorChar={'_'}
@@ -39,16 +39,26 @@ export const Hero = () => {
           </FadeDiv>
         </FadeDiv>
 
-        <div className="relative order-1 flex w-full items-center justify-center md:order-2">
+        <div className="relative order-2 flex w-full items-center justify-center">
           <FadeDiv className="relative mx-auto w-full max-w-md">
-            <BlobAnimation>
+            <div className="hidden md:block">
+              <BlobAnimation>
+                <Image3DEffect
+                  src="/images/photo_home.png"
+                  alt="Mujer trabajando en su computadora"
+                  priority={true}
+                  decorativeElements={false}
+                />
+              </BlobAnimation>
+            </div>
+            <div className="block md:hidden">
               <Image3DEffect
                 src="/images/photo_home.png"
                 alt="Mujer trabajando en su computadora"
                 priority={true}
                 decorativeElements={false}
               />
-            </BlobAnimation>
+            </div>
           </FadeDiv>
         </div>
       </FadeContainer>
