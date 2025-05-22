@@ -21,14 +21,24 @@ export default function RootLayout({
   return (
     <html lang="es">
       <body
-        className={cn(poppins.className, 'flex min-h-screen flex-col antialiased')}
+        className={cn(
+          poppins.className,
+          'flex min-h-screen flex-col antialiased',
+          'motion-safe:scroll-smooth'
+        )}
         suppressHydrationWarning
       >
         <AppProviders>
-          <header className="w-full">
+          <header className="fixed top-0 right-0 left-0 z-[var(--z-header)] w-full">
             <Navbar />
           </header>
-          <main className="relative w-full flex-grow overflow-hidden pt-16 md:pt-20">
+          <main
+            className={cn(
+              'relative w-full flex-grow',
+              'pt-[var(--navbar-height)]',
+              'safe-top:pt-[calc(var(--navbar-height)+env(safe-area-inset-top))]'
+            )}
+          >
             {children}
           </main>
           <Footer />

@@ -36,7 +36,7 @@ export const FloatingNav = ({
       setHasScrolled(true);
     }
 
-    if (hasScrolled) {
+    if (hasScrolled && !isMenuOpen) {
       const previous = scrollY.getPrevious() ?? 0;
       const direction = latest - previous;
 
@@ -45,11 +45,14 @@ export const FloatingNav = ({
       } else {
         setVisible(direction < 0);
       }
+    } else if (isMenuOpen) {
+      setVisible(true);
     }
   });
 
   const toggleMenu = () => {
     setIsMenuOpen(!isMenuOpen);
+    if (!isMenuOpen) setVisible(true);
   };
 
   const handleNavClick = () => {
@@ -71,15 +74,30 @@ export const FloatingNav = ({
           duration: 0.2
         }}
         className={cn(
-          'z-5000 flex w-full items-center justify-between border-b border-gray-100 bg-white p-4 md:bg-white/70 md:backdrop-blur-md dark:border-gray-800/20 dark:bg-black md:dark:bg-black/70',
+          'flex min-h-[var(--navbar-height)] w-full items-center justify-between',
+          'border-b border-gray-100 dark:border-gray-800/20',
+          'bg-white/95 dark:bg-black/95',
+          'md:bg-white/70 md:backdrop-blur-md',
+          'px-4 py-2 md:px-8',
+          'transition-all duration-[var(--transition-base)]',
           className
         )}
       >
-        <Link href="/" className="relative z-10" onClick={handleNavClick}>
-          <IconLogo src="/sinergia_logo.svg" alt="Sinergia" width={120} height={40} />
+        <Link
+          href="/"
+          className="relative z-[var(--z-header)] focus-visible:ring-2 focus-visible:outline-none"
+          onClick={handleNavClick}
+        >
+          <IconLogo
+            src="/sinergia_logo.svg"
+            alt="Sinergia"
+            width={100}
+            height={35}
+            className="h-8 w-auto transition-all duration-200 md:h-10"
+          />
         </Link>
 
-        <div className="hidden items-center space-x-8 md:flex">
+        <div className="hidden items-center gap-6 md:flex">
           {navItems.map(navItem => (
             <NavLink
               key={`desktop-link-${navItem.name}`}
@@ -92,14 +110,17 @@ export const FloatingNav = ({
           ))}
 
           <UserProfileButton />
-
           <SignedUserButton />
         </div>
 
-        <div className="flex items-center space-x-4 md:hidden">
+        <div className="flex items-center gap-4 md:hidden">
           <SignedUserButton redirectToProfile={true} />
-
-          <MenuButton isOpen={isMenuOpen} toggle={toggleMenu} />
+          <MenuButton
+            isOpen={isMenuOpen}
+            toggle={toggleMenu}
+            aria-expanded={isMenuOpen}
+            aria-controls="mobile-menu"
+          />
         </div>
 
         <AnimatePresence>
@@ -109,7 +130,14 @@ export const FloatingNav = ({
               animate={{ opacity: 1, y: 0 }}
               exit={{ opacity: 0, y: -20 }}
               transition={{ duration: 0.2 }}
-              className="absolute top-0 right-0 left-0 min-h-screen bg-white/70 px-6 py-20 backdrop-blur-md md:hidden"
+              className={cn(
+                'absolute top-[var(--navbar-height)] right-0 left-0',
+                'min-h-[calc(100vh-var(--navbar-height))]',
+                'bg-white/95 dark:bg-black/95',
+                'backdrop-blur-md backdrop-saturate-150',
+                'px-6 py-8',
+                'md:hidden'
+              )}
               id="mobile-menu"
             >
               <div className="flex flex-col space-y-4">
@@ -129,7 +157,12 @@ export const FloatingNav = ({
                   <SignInButton mode="modal">
                     <Button
                       variant="default"
-                      className="bg-primary hover:bg-primary/90 mt-4 w-full font-medium text-white transition-all duration-300"
+                      className={cn(
+                        'mt-4 w-full font-medium',
+                        'bg-primary text-white',
+                        'hover:bg-primary/90',
+                        'transition-all duration-200'
+                      )}
                     >
                       Iniciar sesión
                     </Button>

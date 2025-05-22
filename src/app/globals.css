@@ -34,6 +34,22 @@
   --color-secondary-900: oklch(0.6 0.11 85); /* #A38E21 */
   --color-secondary-950: oklch(0.5 0.09 85); /* #766618 */
 
+  /* Layout */
+  --layout-header-height-mobile: 64px;
+  --layout-header-height-desktop: 80px;
+  --navbar-height: var(--layout-header-height-mobile);
+
+  /* Z-Index Layers */
+  --z-header: 50;
+  --z-modal: 100;
+  --z-tooltip: 150;
+  --z-toast: 200;
+
+  /* Transitions */
+  --transition-fast: 200ms;
+  --transition-base: 300ms;
+  --transition-slow: 500ms;
+
   /* Tertiary colors */
   --color-tertiary-50: oklch(0.95 0.03 195); /* #E5F8FA */
   --color-tertiary-100: oklch(0.92 0.055 195); /* #CDEFEF */
@@ -376,4 +392,10 @@ body {
   margin: 0;
   padding: 0;
   overflow-x: hidden;
+}
+
+@media (min-width: 1024px) {
+  :root {
+    --navbar-height: var(--layout-header-height-desktop);
+  }
 }

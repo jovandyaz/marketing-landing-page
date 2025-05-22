@@ -14,7 +14,7 @@ import { motion } from 'motion/react';
 
 export default function ServicesPage() {
   return (
-    <div className="flex min-h-screen flex-col items-center justify-between pb-16">
+    <div className="flex min-h-[calc(100vh-var(--navbar-height))] flex-col items-center justify-center pt-6 md:pt-0">
       <section className="relative flex w-full items-center justify-center md:h-screen">
         <SubtleBlobAnimation>
           <FadeContainer className="container mx-auto px-4 md:px-8">

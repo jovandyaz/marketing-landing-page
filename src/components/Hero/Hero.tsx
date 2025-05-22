@@ -11,7 +11,7 @@ export const Hero = () => {
   return (
     <section
       aria-label="hero"
-      className="relative flex min-h-screen w-full items-center justify-center overflow-hidden px-4 md:px-8"
+      className="relative flex min-h-[calc(100vh-var(--navbar-height))] w-full items-center justify-center overflow-hidden px-4 pt-6 md:px-8"
     >
       <FadeContainer className="mx-auto grid w-full max-w-6xl grid-cols-1 items-center gap-8 md:grid-cols-[1fr_1.2fr] md:gap-16">
         <FadeDiv className="order-1 space-y-4 md:space-y-6">

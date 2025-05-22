@@ -10,7 +10,7 @@ export const Navbar = () => {
   const navItems = isLoaded && isSignedIn ? AUTHENTICATED_NAV_ITEMS : BASE_NAV_ITEMS;
 
   return (
-    <nav className="fixed top-0 right-0 left-0 z-50 w-full">
+    <nav role="navigation" aria-label="Main navigation">
       <FloatingNav navItems={navItems} />
     </nav>
   );
