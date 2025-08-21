@@ -77,7 +77,6 @@ export function Services() {
 
         <div className="grid gap-16 md:gap-24">
           {services.map((service, index) => {
-            // Define style variables based on service
             const isEven = index % 2 === 0;
             const colorKey =
               index % 4 === 0

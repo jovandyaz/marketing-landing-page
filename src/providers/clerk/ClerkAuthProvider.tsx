@@ -41,7 +41,6 @@ export function ClerkAuthProvider({ children }: ClerkAuthProviderProps) {
           userButtonPopoverActionButtonIcon: 'text-gray-500',
           userButtonAvatarBox: 'border border-gray-200 shadow-sm',
 
-          // Profile page specific styles
           userProfilePage: 'w-full border-0 shadow-none p-0',
           userProfilePageBleed: 'p-0',
           userProfileSectionTitle: 'text-xl font-bold text-gray-900',
@@ -58,7 +57,6 @@ export function ClerkAuthProvider({ children }: ClerkAuthProviderProps) {
           avatarUploader: 'mx-auto mb-4',
           avatarBox: 'rounded-full overflow-hidden border border-gray-200',
 
-          // Navigation and general elements
           navbar: 'hidden',
           navbarMobileMenu: 'hidden',
           navbarButton: 'hidden',

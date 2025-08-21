@@ -2,12 +2,13 @@
 
 import { SOURCE_OPTIONS } from './contact-form.constants';
 import { contactFormSchema } from './contact-form.schema';
-import { ContactFormData } from './contact-form.types';
+import { type ContactFormData } from './contact-form.types';
 import {
   Badge,
   Button,
   CuteCard,
   CuteCardContent,
+  LoadingSpinner,
   Form,
   FormControl,
   FormField,
@@ -225,7 +226,14 @@ export const ContactForm = () => {
                   type="submit"
                   disabled={!form.formState.isValid || form.formState.isSubmitting}
                 >
-                  {form.formState.isSubmitting ? 'Enviando...' : 'Enviar mensaje'}
+                  {form.formState.isSubmitting ? (
+                    <span className="flex items-center gap-2">
+                      <LoadingSpinner size="sm" className="border-white border-t-white/30" />
+                      Enviando...
+                    </span>
+                  ) : (
+                    'Enviar mensaje'
+                  )}
                 </Button>
               </div>
 

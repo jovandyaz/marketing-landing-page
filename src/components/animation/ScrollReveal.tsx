@@ -62,7 +62,6 @@ export const ScrollReveal = ({
   }, [isInView, controls]);
 
   const getVariants = (): Variants => {
-    // Use spring physics for more natural animation when specified
     const springTransition = {
       type: 'spring',
       stiffness: 100,

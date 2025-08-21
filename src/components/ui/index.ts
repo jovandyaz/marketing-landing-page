@@ -15,3 +15,4 @@ export * from './SocialLink';
 
 export * from './aceternity';
 export * from './auth';
+export * from './LoadingSpinner';

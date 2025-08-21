@@ -7,7 +7,9 @@ export * from './LogoCarousel';
 export * from './Navbar';
 export * from './Services';
 export * from './ContactForm';
+export * from './ErrorBoundary';
 
 // UI
 export * from './ui';
 export * from './animation';
+export * from './structured-data';
